@@ -1,0 +1,81 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+ 
+@layer base {
+  :root {
+    --background: 30 20% 98%; /* Very light, almost off-white */
+    --foreground: 27 13% 21%; /* Dark Brown from 3E362E */
+
+    --card: 30 29% 95%; /* Very light version of AC8968 */
+    --card-foreground: 27 13% 21%;
+ 
+    --popover: 30 29% 95%;
+    --popover-foreground: 27 13% 21%;
+ 
+    --primary: 29 41% 37%; /* Medium Brown from 865D36 */
+    --primary-foreground: 30 20% 98%; /* Light background for contrast */
+ 
+    --secondary: 30 28% 46%; /* Lighter Brown from 937858 */
+    --secondary-foreground: 27 13% 21%;
+ 
+    --muted: 30 20% 90%;
+    --muted-foreground: 27 10% 40%;
+ 
+    --accent: 140 10% 40%; /* Muted green */
+    --accent-foreground: 30 20% 98%;
+ 
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 60 9.1% 97.8%;
+
+    --border: 30 20% 85%;
+    --input: 30 20% 85%;
+    --ring: 29 41% 37%;
+ 
+    --radius: 0.5rem;
+  }
+ 
+  .dark {
+    --background: 27 13% 15%; /* Darker than 3E362E */
+    --foreground: 30 20% 98%; /* Light background */
+ 
+    --card: 27 13% 18%;
+    --card-foreground: 30 20% 98%;
+ 
+    --popover: 27 13% 18%;
+    --popover-foreground: 30 20% 98%;
+ 
+    --primary: 30 20% 98%; /* Light background */
+    --primary-foreground: 27 13% 15%; /* Dark background */
+ 
+    --secondary: 27 13% 25%;
+    --secondary-foreground: 30 20% 98%;
+ 
+    --muted: 27 13% 25%;
+    --muted-foreground: 30 10% 60%;
+ 
+    --accent: 140 15% 60%; /* Lighter green for dark mode */
+    --accent-foreground: 27 13% 15%;
+ 
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 60 9.1% 97.8%;
+ 
+    --border: 27 13% 30%;
+    --input: 27 13% 30%;
+    --ring: 30 20% 98%;
+  }
+}
+ 
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+  html {
+    scroll-behavior: smooth;
+  }
+}

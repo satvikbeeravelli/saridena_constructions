@@ -9,6 +9,10 @@ export default defineConfig({
       '@': path.resolve(__dirname, './src'),
     },
   },
+  base: '/saridena/',
+  build: {
+    outDir: 'build',
+  },
   optimizeDeps: {
     exclude: ['lucide-react'],
   },

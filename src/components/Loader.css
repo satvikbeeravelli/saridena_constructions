@@ -18,26 +18,10 @@
     opacity: 0;
   }
   
+/* The logo is now a flex item, centered by the container */
 .loader-logo-center {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    width: 150px; 
+    width: auto;
     height: auto;
   }
   
-  .progress-bar-container {
-    width: 200px;
-    height: 10px;
-    background-color: #e0e0e0;
-    border-radius: 5px;
-    margin-top: 50px;
-    overflow: hidden;
-  }
   
-  .progress-bar {
-    width: 0;
-    height: 100%;
-    background-color: #4caf50;
-  }

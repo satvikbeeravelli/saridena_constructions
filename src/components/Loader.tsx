@@ -16,16 +16,11 @@ const Loader: React.FC = () => {
         alt="Logo"
         className="loader-logo-center"
         layoutId="main-logo"
+        initial={{ scale: 3 }}
+        animate={{ scale: 1 }}
         transition={{ duration: 3, ease: [0.4, 0, 0.2, 1] }}
       />
-      <div className="progress-bar-container">
-        <motion.div
-          className="progress-bar"
-          initial={{ width: 0 }}
-          animate={{ width: '100%' }}
-          transition={{ duration: 3, ease: 'linear' }}
-        />
-      </div>
+      
     </motion.div>
   );
 };

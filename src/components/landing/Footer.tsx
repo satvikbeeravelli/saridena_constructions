@@ -19,7 +19,7 @@ export function Footer() {
         <div className="flex flex-col md:flex-row justify-between items-center text-sm">
           <div className="flex items-center space-x-2 mb-2 md:mb-0">
             <img
-              src="/photos/saridena_logo.png"
+              src="/saridena_constructions/photos/saridena_logo.png"
               alt="Saridena Logo"
               style={{ filter: 'drop-shadow(2px 2px 10px rgba(255, 255, 255, 0.6))' }}
               className="h-8 w-auto"

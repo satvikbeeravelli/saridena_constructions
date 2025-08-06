@@ -2,7 +2,7 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import './Loader.css';
 // Use public folder path for logo
-const logo = '/saridena/photos/saridena_logo.png';
+const logo = '/saridena_constructions/photos/saridena_logo.png';
 
 const Loader: React.FC = () => {
   return (

@@ -26,7 +26,7 @@ export const Hero = () => {
 
       <video
         ref={videoRef}
-        src="/saridena/videos/bg_video.mp4" // Make sure this path matches your public folder structure
+        src="/saridena_constructions/videos/bg_video.mp4"
         autoPlay
         loop
         muted
@@ -36,7 +36,7 @@ export const Hero = () => {
 
       <motion.img
         layoutId="main-logo"
-        src="/saridena/photos/saridena_logo.png"
+        src="/saridena_constructions/photos/saridena_logo.png"
         alt="Saridena Logo"
         style={{
           filter: "drop-shadow(2px 2px 10px rgba(255, 255, 255, 0.6))",

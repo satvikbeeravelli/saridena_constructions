@@ -55,7 +55,7 @@ export function About() {
                 className="relative rounded-lg overflow-hidden shadow-xl max-w-xs mx-auto"
               >
                 <img
-                  src="/photos/vr/vr_walkthrough.png"
+                  src="/saridena_constructions/photos/vr/vr_walkthrough.png"
                   alt="VR Walkthrough"
                   className="w-full h-auto object-cover"
                 />
@@ -74,7 +74,7 @@ export function About() {
                 className="relative rounded-lg overflow-hidden shadow-xl md:order-2 max-w-xs mx-auto"
               >
                 <img
-                  src="/photos/vr/vr_customization.png"
+                  src="/saridena_constructions/photos/vr/vr_customization.png"
                   alt="VR Customization"
                   className="w-full h-auto object-cover"
                 />

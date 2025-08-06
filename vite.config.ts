@@ -9,7 +9,7 @@ export default defineConfig({
       '@': path.resolve(__dirname, './src'),
     },
   },
-  base: '/saridena/',
+  base: '/saridena_constructions/',
   build: {
     outDir: 'build',
   },

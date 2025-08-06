@@ -10,17 +10,21 @@ import {
   CarouselApi,
 } from "@/components/ui/carousel";
 
-type Category = "Interior" | "Exterior" | "Floor Plan";
+type Category = "Interior" | "Exterior" | "Floor Plan" | "Location and layout";
+type ProjectTab = "Project specification" | "Amenities";
 
 interface Project {
   name: string;
   image: string;
 }
 
+const categoryOrder: Category[] = ["Location and layout", "Exterior", "Floor Plan", "Interior"];
+
 export function Projects() {
-  const [selectedCategory, setSelectedCategory] = useState<Category>("Interior");
+  const [selectedCategory, setSelectedCategory] = useState<Category>("Location and layout");
   const [currentImageIndex, setCurrentImageIndex] = useState<number | null>(null);
   const [carouselApi, setCarouselApi] = useState<CarouselApi | null>(null);
+  const [selectedProjectTab, setSelectedProjectTab] = useState<ProjectTab>("Project specification");
 
   useEffect(() => {
     if (carouselApi) {
@@ -66,6 +70,15 @@ export function Projects() {
       { name: "Apartment Layout", image: "/saridena_constructions/photos/floorplan/3.jpg" },
       { name: "Open-Concept Floor Plan", image: "/saridena_constructions/photos/floorplan/4.jpg" },
     ],
+    "Location and layout": [
+      { name: "Contemporary Villa", image: "/saridena_constructions/photos/exterior/7.png" },
+      { name: "Beachfront Residence", image: "/saridena_constructions/photos/exterior/1.jpg" },
+      { name: "Mountain Chalet", image: "/saridena_constructions/photos/exterior/2.jpg" },
+      { name: "Contemporary Villa", image: "/saridena_constructions/photos/exterior/3.png" },
+      { name: "Beachfront Residence", image: "/saridena_constructions/photos/exterior/4.jpg" },
+      { name: "Mountain Chalet", image: "/saridena_constructions/photos/exterior/5.jpg" },
+      { name: "Contemporary Villa", image: "/saridena_constructions/photos/exterior/6.jpg" },
+    ],
   };
 
   const sectionVariants = {
@@ -94,7 +107,7 @@ export function Projects() {
         <div className="mb-12">
           <nav className="flex justify-center">
             <div className="border-b-2">
-              {(Object.keys(projects) as Category[]).map((category) => (
+              {categoryOrder.map((category) => (
                 <Button
                   key={category}
                   variant="ghost"
@@ -150,6 +163,56 @@ export function Projects() {
           <CarouselPrevious />
           <CarouselNext />
         </Carousel>
+
+        <div className="mb-12 mt-12">
+          <h3 className="text-2xl font-bold tracking-tight sm:text-3xl text-center mb-8">
+            Project View
+          </h3>
+          <nav className="flex justify-center">
+            <div className="border-b-2">
+              <Button
+                variant="ghost"
+                className={`py-4 px-6 text-lg font-medium rounded-none ${
+                  selectedProjectTab === "Project specification"
+                    ? "border-b-2 border-primary text-primary"
+                    : "text-muted-foreground"
+                }`}
+                onClick={() => setSelectedProjectTab("Project specification")}
+              >
+                Project specification
+              </Button>
+              <Button
+                variant="ghost"
+                className={`py-4 px-6 text-lg font-medium rounded-none ${
+                  selectedProjectTab === "Amenities"
+                    ? "border-b-2 border-primary text-primary"
+                    : "text-muted-foreground"
+                }`}
+                onClick={() => setSelectedProjectTab("Amenities")}
+              >
+                Amenities
+              </Button>
+            </div>
+          </nav>
+        </div>
+
+        {selectedProjectTab === "Project specification" && (
+          <div className="mt-8 text-center">
+            <h3 className="text-xl font-bold">Project Specification Details</h3>
+            <p className="mt-2 text-muted-foreground">
+              Details about the project specifications will go here.
+            </p>
+          </div>
+        )}
+
+        {selectedProjectTab === "Amenities" && (
+          <div className="mt-8 text-center">
+            <h3 className="text-xl font-bold">Amenities Available</h3>
+            <p className="mt-2 text-muted-foreground">
+              Information about the amenities will be listed here.
+            </p>
+          </div>
+        )}
 
         <AnimatePresence>
           {currentImageIndex !== null && (

@@ -4,14 +4,11 @@ import { motion, useInView } from "framer-motion";
 import { useRef, useEffect } from "react";
 
 export const Hero = () => {
-  const sectionRef = useRef(null);
+  const sectionRef = useRef<HTMLElement | null>(null);
   const videoRef = useRef<HTMLVideoElement>(null);
 
-  const isInView = useInView(sectionRef, {
-    amount: 0.6,
-  });
+  const isInView = useInView(sectionRef, { amount: 0.6 });
 
-  // Replay the video when Hero section is in view
   useEffect(() => {
     if (isInView && videoRef.current) {
       videoRef.current.currentTime = 0;
@@ -29,7 +26,7 @@ export const Hero = () => {
 
       <video
         ref={videoRef}
-        src="/saridena/videos/bg_video.mp4"
+        src="/saridena/videos/bg_video.mp4" // Make sure this path matches your public folder structure
         autoPlay
         loop
         muted
@@ -42,7 +39,7 @@ export const Hero = () => {
         src="/saridena/photos/saridena_logo.png"
         alt="Saridena Logo"
         style={{
-          filter: 'drop-shadow(2px 2px 10px rgba(255, 255, 255, 0.6))'
+          filter: "drop-shadow(2px 2px 10px rgba(255, 255, 255, 0.6))",
         }}
         className="absolute top-8 left-20 h-10 z-20"
       />
@@ -77,8 +74,11 @@ export const Hero = () => {
               size="lg"
               variant="outline"
               className="border-primary-foreground text-primary-foreground bg-transparent hover:bg-primary-foreground hover:text-background"
-              style={{boxShadow:'rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px', 
-                    color: 'white'}}
+              style={{
+                boxShadow:
+                  "rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px",
+                color: "white",
+              }}
             >
               <a href="#contact">Get a Quote</a>
             </Button>

@@ -1,7 +1,6 @@
 import { motion } from "framer-motion";
 import { SectionTitle } from "./SectionTitle";
 
-
 import { SideAd } from "../SideAd";
 
 const containerVariants = {
@@ -27,8 +26,11 @@ export function About() {
         <div className="flex flex-col lg:flex-row lg:space-x-8 mt-24">
           <div className="lg:w-3/4">
             <SectionTitle
+              subtitle="Virtual Reality Experience"
               title="Experience Your Dream Villa in Virtual Reality"
-              description="Before a single brick is laid, step into your future home. Our cutting-edge 3D modeling and VR technology offer an immersive, real-time experience." subtitle={""}            />
+              description="Before a single brick is laid, step into your future home. Our cutting-edge 3D modeling and VR technology offer an immersive, real-time experience."
+              subtitle={""}
+            />
 
             <div className="mt-16 grid md:grid-cols-2 gap-12 items-center">
               <motion.div
@@ -72,7 +74,7 @@ export function About() {
                 className="relative rounded-lg overflow-hidden shadow-xl md:order-2 max-w-xs mx-auto"
               >
                 <img
-                  src="/saridena/photos/vr/vr_customization.png"
+                  src="/photos/vr/vr_customization.png"
                   alt="VR Customization"
                   className="w-full h-auto object-cover"
                 />
@@ -98,7 +100,6 @@ export function About() {
             </div>
           </div>
           <SideAd />
-          
         </div>
       </div>
     </section>

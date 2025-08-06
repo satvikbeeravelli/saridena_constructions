@@ -7,7 +7,15 @@ import {
   CarouselItem,
   CarouselNext,
   CarouselPrevious,
+  CarouselApi,
 } from "@/components/ui/carousel";
+
+type Category = "Interior" | "Exterior" | "Floor Plan";
+
+interface Project {
+  name: string;
+  image: string;
+}
 
 export function Projects() {
   const [selectedCategory, setSelectedCategory] = useState<Category>("Interior");
@@ -22,41 +30,41 @@ export function Projects() {
 
   const projects: Record<Category, Project[]> = {
     Interior: [
-      { name: "Modern Living Room", image: "/saridena/photos/interior/1.png" },
-      { name: "Cozy Bedroom", image: "/saridena/photos/interior/2.png" },
-      { name: "Sleek Kitchen", image: "/saridena/photos/interior/3.png" },
-      { name: "Modern Living Room", image: "/saridena/photos/interior/4.png" },
-      { name: "Cozy Bedroom", image: "/saridena/photos/interior/5.png" },
-      { name: "Sleek Kitchen", image: "/saridena/photos/interior/6.png" },
-      { name: "Modern Living Room", image: "/saridena/photos/interior/7.png" },
-      { name: "Cozy Bedroom", image: "/saridena/photos/interior/8.png" },
-      { name: "Sleek Kitchen", image: "/saridena/photos/interior/9.png" },
-      { name: "Modern Living Room", image: "/saridena/photos/interior/10.png" },
-      { name: "Cozy Bedroom", image: "/saridena/photos/interior/11.png" },
-      { name: "Sleek Kitchen", image: "/saridena/photos/interior/12.png" },
-      { name: "Modern Living Room", image: "/saridena/photos/interior/13.png" },
-      { name: "Cozy Bedroom", image: "/saridena/photos/interior/14.png" },
-      { name: "Sleek Kitchen", image: "/saridena/photos/interior/15.png" },
-      { name: "Modern Living Room", image: "/saridena/photos/interior/16.png" },
-      { name: "Cozy Bedroom", image: "/saridena/photos/interior/17.png" },
-      { name: "Sleek Kitchen", image: "/saridena/photos/interior/18.png" },
-      { name: "Modern Living Room", image: "/saridena/photos/interior/19.png" },
-      { name: "Cozy Bedroom", image: "/saridena/photos/interior/20.jpg" },
+      { name: "Modern Living Room", image: "./photos/interior/1.png" },
+      { name: "Cozy Bedroom", image: "./photos/interior/2.png" },
+      { name: "Sleek Kitchen", image: "./photos/interior/3.png" },
+      { name: "Modern Living Room", image: "./photos/interior/4.png" },
+      { name: "Cozy Bedroom", image: "./photos/interior/5.png" },
+      { name: "Sleek Kitchen", image: "./photos/interior/6.png" },
+      { name: "Modern Living Room", image: "./photos/interior/7.png" },
+      { name: "Cozy Bedroom", image: "./photos/interior/8.png" },
+      { name: "Sleek Kitchen", image: "./photos/interior/9.png" },
+      { name: "Modern Living Room", image: "./photos/interior/10.png" },
+      { name: "Cozy Bedroom", image: "./photos/interior/11.png" },
+      { name: "Sleek Kitchen", image: "./photos/interior/12.png" },
+      { name: "Modern Living Room", image: "./photos/interior/13.png" },
+      { name: "Cozy Bedroom", image: "./photos/interior/14.png" },
+      { name: "Sleek Kitchen", image: "./photos/interior/15.png" },
+      { name: "Modern Living Room", image: "./photos/interior/16.png" },
+      { name: "Cozy Bedroom", image: "./photos/interior/17.png" },
+      { name: "Sleek Kitchen", image: "./photos/interior/18.png" },
+      { name: "Modern Living Room", image: "./photos/interior/19.png" },
+      { name: "Cozy Bedroom", image: "./photos/interior/20.jpg" },
     ],
     Exterior: [
-      { name: "Contemporary Villa", image: "/saridena/photos/exterior/7.png" },
-      { name: "Beachfront Residence", image: "/saridena/photos/exterior/1.jpg" },
-      { name: "Mountain Chalet", image: "/saridena/photos/exterior/2.jpg" },
-      { name: "Contemporary Villa", image: "/saridena/photos/exterior/3.png" },
-      { name: "Beachfront Residence", image: "/saridena/photos/exterior/4.jpg" },
-      { name: "Mountain Chalet", image: "/saridena/photos/exterior/5.jpg" },
-      { name: "Contemporary Villa", image: "/saridena/photos/exterior/6.jpg" },
+      { name: "Contemporary Villa", image: "./photos/exterior/7.png" },
+      { name: "Beachfront Residence", image: "./photos/exterior/1.jpg" },
+      { name: "Mountain Chalet", image: "./photos/exterior/2.jpg" },
+      { name: "Contemporary Villa", image: "./photos/exterior/3.png" },
+      { name: "Beachfront Residence", image: "./photos/exterior/4.jpg" },
+      { name: "Mountain Chalet", image: "./photos/exterior/5.jpg" },
+      { name: "Contemporary Villa", image: "./photos/exterior/6.jpg" },
     ],
     "Floor Plan": [
-      { name: "Open-Concept Floor Plan", image: "/saridena/photos/floorplan/1.jpg" },
-      { name: "Two-Story House Blueprint", image: "/saridena/photos/floorplan/2.jpg" },
-      { name: "Apartment Layout", image: "/saridena/photos/floorplan/3.jpg" },
-      { name: "Open-Concept Floor Plan", image: "/saridena/photos/floorplan/4.jpg" },
+      { name: "Open-Concept Floor Plan", image: "./photos/floorplan/1.jpg" },
+      { name: "Two-Story House Blueprint", image: "./photos/floorplan/2.jpg" },
+      { name: "Apartment Layout", image: "./photos/floorplan/3.jpg" },
+      { name: "Open-Concept Floor Plan", image: "./photos/floorplan/4.jpg" },
     ],
   };
 
@@ -142,6 +150,7 @@ export function Projects() {
           <CarouselPrevious />
           <CarouselNext />
         </Carousel>
+
         <AnimatePresence>
           {currentImageIndex !== null && (
             <motion.div
@@ -149,10 +158,11 @@ export function Projects() {
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
+              onClick={() => setCurrentImageIndex(null)}
             >
               <motion.img
                 src={projects[selectedCategory][currentImageIndex].image}
-                alt="Fullscreen"
+                alt={projects[selectedCategory][currentImageIndex].name}
                 initial={{ scale: 0.8 }}
                 animate={{ scale: 1 }}
                 exit={{ scale: 0.8 }}
@@ -162,7 +172,11 @@ export function Projects() {
               />
               <button
                 className="absolute top-4 right-4 text-white text-3xl font-bold"
-                onClick={() => setCurrentImageIndex(null)}
+                onClick={(e) => {
+                  e.stopPropagation();
+                  setCurrentImageIndex(null);
+                }}
+                aria-label="Close fullscreen image"
               >
                 &times;
               </button>
@@ -176,6 +190,7 @@ export function Projects() {
                       : (prevIndex as number) - 1
                   );
                 }}
+                aria-label="Previous image"
               >
                 &#8249;
               </button>
@@ -189,6 +204,7 @@ export function Projects() {
                       : (prevIndex as number) + 1
                   );
                 }}
+                aria-label="Next image"
               >
                 &#8250;
               </button>

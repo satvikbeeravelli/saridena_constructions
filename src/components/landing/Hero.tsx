@@ -29,14 +29,14 @@ export function Hero() {
 
       <video
         ref={videoRef}
-        src="src/videos/bg_video.mp4"
+        src="./videos/bg_video.mp4"
         muted
         playsInline
         className="absolute top-1/2 left-1/2 min-w-full min-h-full w-auto h-auto object-cover -translate-x-1/2 -translate-y-1/2 z-0"
       />
 
       <div className="absolute inset-0 z-20 flex items-center justify-center">
-        <img src="src/photos/saridena_logo.png" alt="Saridena Logo" style={{
+        <img src="./photos/saridena_logo.png" alt="Saridena Logo" style={{
     filter: 'drop-shadow(2px 2px 10px rgba(255, 255, 255, 0.6))'
   }} className="absolute top-8 left-20 h-10" />
         <motion.div

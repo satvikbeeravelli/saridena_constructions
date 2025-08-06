@@ -7,7 +7,15 @@ import {
   CarouselItem,
   CarouselNext,
   CarouselPrevious,
+  CarouselApi,
 } from "@/components/ui/carousel";
+
+type Category = "Interior" | "Exterior" | "Floor Plan";
+
+interface Project {
+  name: string;
+  image: string;
+}
 
 export function Projects() {
   const [selectedCategory, setSelectedCategory] = useState<Category>("Interior");
@@ -22,41 +30,41 @@ export function Projects() {
 
   const projects: Record<Category, Project[]> = {
     Interior: [
-      { name: "Modern Living Room", image: "src/photos/interior/1.png" },
-      { name: "Cozy Bedroom", image: "src/photos/interior/2.png" },
-      { name: "Sleek Kitchen", image: "src/photos/interior/3.png" },
-      { name: "Modern Living Room", image: "src/photos/interior/4.png" },
-      { name: "Cozy Bedroom", image: "src/photos/interior/5.png" },
-      { name: "Sleek Kitchen", image: "src/photos/interior/6.png" },
-      { name: "Modern Living Room", image: "src/photos/interior/7.png" },
-      { name: "Cozy Bedroom", image: "src/photos/interior/8.png" },
-      { name: "Sleek Kitchen", image: "src/photos/interior/9.png" },
-      { name: "Modern Living Room", image: "src/photos/interior/10.png" },
-      { name: "Cozy Bedroom", image: "src/photos/interior/11.png" },
-      { name: "Sleek Kitchen", image: "src/photos/interior/12.png" },
-      { name: "Modern Living Room", image: "src/photos/interior/13.png" },
-      { name: "Cozy Bedroom", image: "src/photos/interior/14.png" },
-      { name: "Sleek Kitchen", image: "src/photos/interior/15.png" },
-      { name: "Modern Living Room", image: "src/photos/interior/16.png" },
-      { name: "Cozy Bedroom", image: "src/photos/interior/17.png" },
-      { name: "Sleek Kitchen", image: "src/photos/interior/18.png" },
-      { name: "Modern Living Room", image: "src/photos/interior/19.png" },
-      { name: "Cozy Bedroom", image: "src/photos/interior/20.jpg" },
+      { name: "Modern Living Room", image: "./photos/interior/1.png" },
+      { name: "Cozy Bedroom", image: "./photos/interior/2.png" },
+      { name: "Sleek Kitchen", image: "./photos/interior/3.png" },
+      { name: "Modern Living Room", image: "./photos/interior/4.png" },
+      { name: "Cozy Bedroom", image: "./photos/interior/5.png" },
+      { name: "Sleek Kitchen", image: "./photos/interior/6.png" },
+      { name: "Modern Living Room", image: "./photos/interior/7.png" },
+      { name: "Cozy Bedroom", image: "./photos/interior/8.png" },
+      { name: "Sleek Kitchen", image: "./photos/interior/9.png" },
+      { name: "Modern Living Room", image: "./photos/interior/10.png" },
+      { name: "Cozy Bedroom", image: "./photos/interior/11.png" },
+      { name: "Sleek Kitchen", image: "./photos/interior/12.png" },
+      { name: "Modern Living Room", image: "./photos/interior/13.png" },
+      { name: "Cozy Bedroom", image: "./photos/interior/14.png" },
+      { name: "Sleek Kitchen", image: "./photos/interior/15.png" },
+      { name: "Modern Living Room", image: "./photos/interior/16.png" },
+      { name: "Cozy Bedroom", image: "./photos/interior/17.png" },
+      { name: "Sleek Kitchen", image: "./photos/interior/18.png" },
+      { name: "Modern Living Room", image: "./photos/interior/19.png" },
+      { name: "Cozy Bedroom", image: "./photos/interior/20.jpg" },
     ],
     Exterior: [
-      { name: "Contemporary Villa", image: "src/photos/exterior/7.png" },
-      { name: "Beachfront Residence", image: "src/photos/exterior/1.jpg" },
-      { name: "Mountain Chalet", image: "src/photos/exterior/2.jpg" },
-      { name: "Contemporary Villa", image: "src/photos/exterior/3.png" },
-      { name: "Beachfront Residence", image: "src/photos/exterior/4.jpg" },
-      { name: "Mountain Chalet", image: "src/photos/exterior/5.jpg" },
-      { name: "Contemporary Villa", image: "src/photos/exterior/6.jpg" },
+      { name: "Contemporary Villa", image: "./photos/exterior/7.png" },
+      { name: "Beachfront Residence", image: "./photos/exterior/1.jpg" },
+      { name: "Mountain Chalet", image: "./photos/exterior/2.jpg" },
+      { name: "Contemporary Villa", image: "./photos/exterior/3.png" },
+      { name: "Beachfront Residence", image: "./photos/exterior/4.jpg" },
+      { name: "Mountain Chalet", image: "./photos/exterior/5.jpg" },
+      { name: "Contemporary Villa", image: "./photos/exterior/6.jpg" },
     ],
     "Floor Plan": [
-      { name: "Open-Concept Floor Plan", image: "src/photos/floorplan/1.jpg" },
-      { name: "Two-Story House Blueprint", image: "src/photos/floorplan/2.jpg" },
-      { name: "Apartment Layout", image: "src/photos/floorplan/3.jpg" },
-      { name: "Open-Concept Floor Plan", image: "src/photos/floorplan/4.jpg" },
+      { name: "Open-Concept Floor Plan", image: "./photos/floorplan/1.jpg" },
+      { name: "Two-Story House Blueprint", image: "./photos/floorplan/2.jpg" },
+      { name: "Apartment Layout", image: "./photos/floorplan/3.jpg" },
+      { name: "Open-Concept Floor Plan", image: "./photos/floorplan/4.jpg" },
     ],
   };
 

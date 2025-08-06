@@ -28,8 +28,7 @@ export function About() {
           <div className="lg:w-3/4">
             <SectionTitle
               title="Experience Your Dream Villa in Virtual Reality"
-              description="Before a single brick is laid, step into your future home. Our cutting-edge 3D modeling and VR technology offer an immersive, real-time experience."
-            />
+              description="Before a single brick is laid, step into your future home. Our cutting-edge 3D modeling and VR technology offer an immersive, real-time experience." subtitle={""}            />
 
             <div className="mt-16 grid md:grid-cols-2 gap-12 items-center">
               <motion.div
@@ -54,7 +53,7 @@ export function About() {
                 className="relative rounded-lg overflow-hidden shadow-xl max-w-xs mx-auto"
               >
                 <img
-                  src="src/photos/vr/vr_walkthrough.png"
+                  src="/photos/vr/vr_walkthrough.png"
                   alt="VR Walkthrough"
                   className="w-full h-auto object-cover"
                 />
@@ -73,7 +72,7 @@ export function About() {
                 className="relative rounded-lg overflow-hidden shadow-xl md:order-2 max-w-xs mx-auto"
               >
                 <img
-                  src="src/photos/vr/vr_customization.png"
+                  src="/saridena/photos/vr/vr_customization.png"
                   alt="VR Customization"
                   className="w-full h-auto object-cover"
                 />

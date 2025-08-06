@@ -5,7 +5,7 @@ export function SideAd() {
     <div className="hidden lg:block w-1/3 p-4 space-y-16">
       <div className="rounded-lg overflow-hidden shadow-lg bg-gray-100 dark:bg-gray-800">
         <video
-          src="src/videos/sari1.mp4"
+          src="/saridena/videos/sari1.mp4"
           autoPlay
           loop
           muted
@@ -18,7 +18,7 @@ export function SideAd() {
       </div>
       <div className="rounded-lg overflow-hidden shadow-lg bg-gray-100 dark:bg-gray-800">
         <video
-          src="src/videos/sari2.mp4"
+          src="/saridena/videos/sari2.mp4"
           autoPlay
           loop
           muted

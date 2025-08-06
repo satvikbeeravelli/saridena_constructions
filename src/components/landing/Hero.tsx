@@ -3,7 +3,7 @@ import { ArrowRight } from "lucide-react";
 import { motion, useInView } from "framer-motion";
 import { useRef, useEffect } from "react";
 
-export function Hero() {
+export const Hero = () => {
   const sectionRef = useRef(null);
   const videoRef = useRef<HTMLVideoElement>(null);
 
@@ -29,16 +29,25 @@ export function Hero() {
 
       <video
         ref={videoRef}
-        src="src/videos/bg_video.mp4"
+        src="/saridena/videos/bg_video.mp4"
+        autoPlay
+        loop
         muted
         playsInline
         className="absolute top-1/2 left-1/2 min-w-full min-h-full w-auto h-auto object-cover -translate-x-1/2 -translate-y-1/2 z-0"
       />
 
+      <motion.img
+        layoutId="main-logo"
+        src="/saridena/photos/saridena_logo.png"
+        alt="Saridena Logo"
+        style={{
+          filter: 'drop-shadow(2px 2px 10px rgba(255, 255, 255, 0.6))'
+        }}
+        className="absolute top-8 left-20 h-10 z-20"
+      />
+
       <div className="absolute inset-0 z-20 flex items-center justify-center">
-        <img src="src/photos/saridena_logo.png" alt="Saridena Logo" style={{
-    filter: 'drop-shadow(2px 2px 10px rgba(255, 255, 255, 0.6))'
-  }} className="absolute top-8 left-20 h-10" />
         <motion.div
           className="container text-center text-white"
           initial={{ opacity: 0, y: 50 }}
@@ -78,4 +87,4 @@ export function Hero() {
       </div>
     </section>
   );
-}
+};

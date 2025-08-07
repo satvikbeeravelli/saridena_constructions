@@ -39,7 +39,8 @@ export const Hero = () => {
         src="/saridena_constructions/photos/saridena_logo.png"
         alt="Saridena Logo"
         style={{
-          filter: "drop-shadow(2px 2px 10px rgba(255, 255, 255, 0.6))",
+          filter: "drop-shadow(2px 2px 2px rgba(0, 0, 0, 0.6))",
+          height: "3rem",
         }}
         className="absolute top-8 left-20 h-10 z-20"
       />

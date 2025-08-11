@@ -14,11 +14,12 @@ const Loader: React.FC = () => {
       <motion.img
         src={logo}
         alt="Logo"
-        className="loader-logo-center"
+        className="loader-logo-center high-quality-image"
         layoutId="main-logo"
         initial={{ scale: 3 }}
         animate={{ scale: 1 }}
         transition={{ duration: 3, ease: [0.4, 0, 0.2, 1] }}
+        loading="eager"
       />
       
     </motion.div>

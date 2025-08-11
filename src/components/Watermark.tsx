@@ -7,6 +7,7 @@ export function Watermark() {
         backgroundRepeat: 'no-repeat',
         backgroundPosition: 'center',
         backgroundSize: 'contain',
+        imageRendering: 'crisp-edges',
       }}
     />
   );

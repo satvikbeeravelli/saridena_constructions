@@ -22,7 +22,8 @@ export function Footer() {
               src="/saridena_constructions/photos/saridena_logo.png"
               alt="Saridena Logo"
               style={{ filter: 'drop-shadow(2px 2px 10px rgba(255, 255, 255, 0.6))' }}
-              className="h-8 w-auto"
+              className="h-8 w-auto high-quality-image"
+              loading="eager"
             />
           </div>
           <p className="text-foreground">&copy; {new Date().getFullYear()} Saridena Constructions Pvt. Ltd.</p>

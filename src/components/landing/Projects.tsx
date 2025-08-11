@@ -17,7 +17,7 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 
-type Category = "Interior" | "Exterior" | "Floor Plan" | "Location and layout" | "3D Model";
+type Category = "Interior" | "Exterior" | "Floor Plan" | "Location and layout" | "Isometric View";
 type ProjectTab = "Project specification" | "Amenities";
 
 interface ProjectItem {
@@ -75,8 +75,10 @@ const allProjects: ProjectData = {
       { name: "Open-Concept Floor Plan", image: "/saridena_constructions/photos/floorplan/1.jpg" },
       { name: "LakeWoods Villas Map", image: "map_iframe", type: "map" }, // Special identifier for the map iframe
     ],
-    "3D Model": [
-      { name: "LakeWoods Villas 3D Model", image: "", type: "model", model: "https://your-aws-s3-bucket.s3.amazonaws.com/model.glb" }
+    "Isometric View": [
+      { name: "Isometric View - Building Layout", image: "/saridena_constructions/photos/isometric/1.jpg" },
+      { name: "Isometric View - Design Perspective", image: "/saridena_constructions/photos/isometric/2.jpg" },
+      { name: "Isometric View - Overview", image: "/saridena_constructions/photos/isometric/3.jpg" }
     ],
   },
   "Another Project": {
@@ -99,65 +101,16 @@ const allProjects: ProjectData = {
   },
 };
 
-const categoryOrder: Category[] = ["Location and layout", "Exterior", "Floor Plan", "Interior", "3D Model"];
+const categoryOrder: Category[] = ["Location and layout", "Exterior", "Floor Plan", "Interior", "Isometric View"];
 
 const sectionVariants = {
   hidden: { opacity: 0, y: 50 },
   visible: { opacity: 1, y: 0, transition: { duration: 0.6, ease: "easeOut" } },
 };
 
-const ModelViewer = ({ modelUrl }: { modelUrl: string }) => {
-  const [timeLeft, setTimeLeft] = useState(180); // 3 minutes in seconds
-  const [isFullscreen, setIsFullscreen] = useState(false);
-  const iframeRef = useRef<HTMLIFrameElement>(null);
-
-  useEffect(() => {
-    if (timeLeft === 0) return;
-
-    const timer = setInterval(() => {
-      setTimeLeft((prevTime) => prevTime - 1);
-    }, 1000);
-
-    return () => clearInterval(timer);
-  }, [timeLeft]);
-
-  const handleFullscreen = () => {
-    if (iframeRef.current) {
-      iframeRef.current.requestFullscreen();
-    }
-  };
-
-  if (timeLeft === 0) {
-    return (
-      <div className="text-center">
-        <h3 className="text-xl font-bold">Session Expired</h3>
-        <p className="mt-2 text-muted-foreground">
-          Your 3D model viewing session has expired.
-        </p>
-      </div>
-    );
-  }
-
-  return (
-    <div className="relative w-full h-96">
-      <iframe
-        ref={iframeRef}
-        src={`https://3d-viewer.com?model=${modelUrl}`} // Placeholder viewer URL
-        width="100%"
-        height="100%"
-        style={{ border: 0 }}
-        allowFullScreen
-        loading="lazy"
-        referrerPolicy="no-referrer-when-downgrade"
-      ></iframe>
-      <div className="absolute top-2 right-2 bg-black/50 text-white p-2 rounded">
-        Time left: {Math.floor(timeLeft / 60)}:{(timeLeft % 60).toString().padStart(2, '0')}
-      </div>
-      <div className="absolute bottom-2 right-2">
-        <Button onClick={handleFullscreen}>View in Fullscreen</Button>
-      </div>
-    </div>
-  );
+const magazineVariants = {
+  hidden: { opacity: 0, x: -100 },
+  visible: { opacity: 1, x: 0, transition: { duration: 1, ease: "easeOut" } },
 };
 
 export function Projects() {
@@ -166,6 +119,19 @@ export function Projects() {
   const [currentImageIndex, setCurrentImageIndex] = useState<number | null>(null);
   const [carouselApi, setCarouselApi] = useState<CarouselApi | null>(null);
   const [selectedProjectTab, setSelectedProjectTab] = useState<ProjectTab>("Project specification");
+  const [showVideoPreview, setShowVideoPreview] = useState<boolean>(false);
+  const videoRef = useRef<HTMLVideoElement>(null);
+
+  // Force video to play when preview is shown
+  useEffect(() => {
+    if (showVideoPreview && videoRef.current) {
+      const video = videoRef.current;
+      video.currentTime = 0;
+      video.play().catch(error => {
+        console.error('Failed to play video:', error);
+      });
+    }
+  }, [showVideoPreview]);
 
   const currentProjectData = allProjects[selectedProject];
 
@@ -185,45 +151,92 @@ export function Projects() {
   return (
     <motion.section
       id="projects"
-      className="py-24"
+      className="py-12 md:py-24 bg-background"
       variants={sectionVariants}
       initial="hidden"
       whileInView="visible"
       viewport={{ amount: 0.2 }}
     >
-      <div className="container lg:w-3/4">
-        <div className="text-center max-w-3xl mx-auto mb-16">
-          <h2 className="text-3xl font-bold tracking-tight sm:text-4xl">
-            Our Demo Projects
-          </h2>
-          <p className="mt-4 text-lg text-muted-foreground">
-            Explore our expertise in interior, exterior, and layout design.
-          </p>
+      <div className="container px-4">
+        {/* Magazine-style header layout */}
+        <div className="grid lg:grid-cols-2 gap-8 md:gap-12 items-center mb-12 md:mb-20">
+          {/* Left side - Heading */}
+          <motion.div
+            variants={magazineVariants}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ amount: 0.3 }}
+          >
+            <h2 className="text-5xl md:text-7xl lg:text-8xl font-bold tracking-tight mb-6">
+              OUR
+              <br />
+              <span className="text-primary">PROJECTS</span>
+            </h2>
+            <p className="text-xl md:text-2xl text-muted-foreground max-w-2xl">
+              Experience our portfolio of luxury villas, each meticulously crafted with precision and artistic vision.
+            </p>
+          </motion.div>
+
+          {/* Right side - Project selector and action buttons */}
+          <motion.div
+            variants={magazineVariants}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ amount: 0.3 }}
+            transition={{ delay: 0.2 }}
+            className="space-y-6"
+          >
+            <Select onValueChange={(value) => setSelectedProject(value)} defaultValue={selectedProject}>
+              <SelectTrigger className="w-full max-w-[320px] ml-auto">
+                <SelectValue placeholder="Select a Project" />
+              </SelectTrigger>
+              <SelectContent>
+                {Object.keys(allProjects).map((projectName) => (
+                  <SelectItem key={projectName} value={projectName}>
+                    {projectName}
+                  </SelectItem>
+                ))}
+              </SelectContent>
+            </Select>
+
+            {/* Action buttons */}
+            <div className="flex gap-4 justify-end">
+              {/* Preview button */}
+              <button 
+                className="bg-primary text-primary-foreground hover:bg-primary/90 px-6 py-3 rounded-lg font-semibold transition-all duration-300"
+                onClick={() => setShowVideoPreview(!showVideoPreview)}
+              >
+                Preview
+              </button>
+
+              {/* Details button */}
+              <button 
+                onClick={() => {
+                  const navigationElement = document.querySelector('[role="tablist"]') || 
+                                          document.querySelector('.border-b-2') ||
+                                          document.querySelector('.flex.justify-center.overflow-x-auto');
+                  if (navigationElement) {
+                    navigationElement.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                  }
+                }}
+                className="border border-primary text-primary hover:bg-primary hover:text-primary-foreground px-6 py-3 rounded-lg font-semibold transition-all duration-300"
+              >
+                Details
+              </button>
+            </div>
+          </motion.div>
         </div>
 
-        <div className="mb-8 flex justify-center">
-          <Select onValueChange={(value) => setSelectedProject(value)} defaultValue={selectedProject}>
-            <SelectTrigger className="w-[280px]">
-              <SelectValue placeholder="Select a Project" />
-            </SelectTrigger>
-            <SelectContent>
-              {Object.keys(allProjects).map((projectName) => (
-                <SelectItem key={projectName} value={projectName}>
-                  {projectName}
-                </SelectItem>
-              ))}
-            </SelectContent>
-          </Select>
-        </div>
+        <div className="max-w-6xl mx-auto">{/* Content wrapper */}
 
-        <div className="mb-12">
-          <nav className="flex justify-center">
-            <div className="border-b-2">
+        <div className="mb-8 md:mb-12">
+          <nav className="flex justify-center overflow-x-auto">
+            <div className="border-b-2 flex min-w-max">
               {categoryOrder.map((category) => (
                 <Button
                   key={category}
                   variant="ghost"
-                  className={`py-4 px-6 text-lg font-medium rounded-none ${
+                  className={`py-3 md:py-4 px-3 md:px-6 text-sm md:text-lg font-medium rounded-none whitespace-nowrap ${
                     selectedCategory === category
                       ? "border-b-2 border-primary text-primary"
                       : "text-muted-foreground"
@@ -276,22 +289,16 @@ export function Projects() {
                   <motion.img
                     src={project.image}
                     alt={project.name}
-                    className="w-full h-60 object-fill"
+                    className="w-full h-60 object-cover high-quality-image"
                     whileHover={{ scale: 1.05 }}
                     transition={{ duration: 0.3 }}
                     onClick={() => setCurrentImageIndex(index)}
-                    loading="lazy"
+                    loading="eager"
+                    decoding="async"
+                    style={{ imageRendering: 'auto' }}
                   />
                 )}
               </motion.div>
-            ))}
-          </div>
-        ) : selectedCategory === "3D Model" ? (
-          <div className="flex justify-center">
-            {currentProjectData["3D Model"]?.map((project, index) => (
-              <div key={index} className="w-full">
-                {project.model && <ModelViewer modelUrl={project.model} />}
-              </div>
             ))}
           </div>
         ) : (
@@ -312,16 +319,18 @@ export function Projects() {
                       animate={{ opacity: 1, scale: 1 }}
                       exit={{ opacity: 0, scale: 0.8 }}
                       transition={{ duration: 0.5 }}
-                      className="rounded-lg shadow-lg overflow-hidden"
+                      className="rounded-lg shadow-lg overflow-hidden image-container"
                     >
                       <motion.img
                         src={project.image}
                         alt={project.name}
-                        className="w-full h-60 object-fill"
+                        className="w-full h-60 object-cover high-quality-image"
                         whileHover={{ scale: 1.05 }}
                         transition={{ duration: 0.3 }}
                         onClick={() => setCurrentImageIndex(index)}
-                        loading="lazy"
+                        loading="eager"
+                        decoding="async"
+                        style={{ imageRendering: 'auto' }}
                       />
                     </motion.div>
                   </div>
@@ -398,8 +407,11 @@ export function Projects() {
                 animate={{ scale: 1 }}
                 exit={{ scale: 0.8 }}
                 transition={{ duration: 0.3 }}
-                className="max-w-full max-h-full object-contain cursor-pointer"
+                className="max-w-full max-h-full object-contain cursor-pointer high-quality-image"
                 onClick={(e) => e.stopPropagation()} // Prevent closing when clicking the image
+                loading="eager"
+                decoding="async"
+                style={{ imageRendering: 'auto' }}
               />
               <button
                 className="absolute top-4 right-4 text-white text-3xl font-bold"
@@ -442,7 +454,60 @@ export function Projects() {
             </motion.div>
           )}
         </AnimatePresence>
+        </div>{/* End content wrapper */}
       </div>
+
+      {/* Video Preview Overlay */}
+      <AnimatePresence>
+        {showVideoPreview && (
+          <motion.div
+            className="fixed inset-0 bg-black/90 flex items-center justify-center z-50"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.2 }}
+            onClick={() => setShowVideoPreview(false)}
+          >
+            <motion.div
+              className="relative w-[80vw] h-[80vh] max-w-4xl"
+              initial={{ scale: 0.9 }}
+              animate={{ scale: 1 }}
+              exit={{ scale: 0.9 }}
+              transition={{ duration: 0.2 }}
+              onClick={(e) => e.stopPropagation()}
+            >
+              <video
+                ref={videoRef}
+                src="/saridena_constructions/videos/bg_video.mp4"
+                autoPlay
+                loop
+                muted
+                playsInline
+                controls
+                className="w-full h-full object-cover rounded-lg"
+                onLoadStart={() => console.log('Video loading started')}
+                onCanPlay={() => console.log('Video can play')}
+                onPlay={() => console.log('Video started playing')}
+                onError={(e) => console.error('Video error:', e)}
+                onLoadedData={() => console.log('Video data loaded')}
+              />
+              
+              <div className="absolute top-4 left-4 bg-black/70 text-white px-3 py-2 rounded">
+                <h3 className="font-semibold">{selectedProject}</h3>
+                <p className="text-sm opacity-80">Project Preview</p>
+              </div>
+
+              <button
+                onClick={() => setShowVideoPreview(false)}
+                className="absolute top-4 right-4 bg-black/70 hover:bg-black/90 text-white px-3 py-2 rounded text-sm transition-colors"
+              >
+                ✕ Close
+              </button>
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+
     </motion.section>
   );
 }

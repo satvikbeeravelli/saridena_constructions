@@ -1,7 +1,7 @@
 import { motion } from "framer-motion";
 import { SectionTitle } from "./SectionTitle";
-
 import { SideAd } from "../SideAd";
+import { useState, useRef, useEffect } from "react";
 
 const containerVariants = {
   hidden: { opacity: 0 },
@@ -19,89 +19,147 @@ const imageVariants = {
   visible: { opacity: 1, scale: 1, transition: { duration: 0.8, ease: "easeOut" } },
 };
 
-export function About() {
-  return (
-    <section id="about" className="bg-background">
-      <div className="container">
-        <div className="flex flex-col lg:flex-row lg:space-x-8 mt-24">
-          <div className="lg:w-3/4">
-            <SectionTitle
-              subtitle="Virtual Reality Experience"
-              title="Experience Your Dream Villa in Virtual Reality"
-              description="Before a single brick is laid, step into your future home. Our cutting-edge 3D modeling and VR technology offer an immersive, real-time experience."
-              subtitle={""}
-            />
+const magazineVariants = {
+  hidden: { opacity: 0, x: -100 },
+  visible: { opacity: 1, x: 0, transition: { duration: 1, ease: "easeOut" } },
+};
 
-            <div className="mt-16 grid md:grid-cols-2 gap-12 items-center">
-              <motion.div
-                variants={containerVariants}
-                initial="hidden"
-                whileInView="visible"
-                viewport={{ once: true, amount: 0.5 }}
-              >
-                <h3 className="text-3xl font-bold mb-4">Walk Through Your Vision</h3>
-                <p className="text-lg text-muted-foreground mb-6">
-                  Our clients don't just see blueprints; they explore their entire villa in a virtual environment. This allows for unparalleled flexibility to make changes to interiors, layouts, and even exterior elements in real-time.
-                </p>
-                <p className="text-lg text-muted-foreground">
-                  Imagine adjusting kitchen cabinet finishes, change of flooring or bathroom tiles, sanitary, or experimenting with lighting, all before construction begins. This interactive process ensures your final villa is precisely what you envisioned, saving time and resources.
-                </p>
-              </motion.div>
-              <enter>
+export function About() {
+  const [isInView, setIsInView] = useState(false);
+  const sectionRef = useRef<HTMLElement>(null);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setIsInView(true);
+        }
+      },
+      { threshold: 0.3 }
+    );
+
+    if (sectionRef.current) {
+      observer.observe(sectionRef.current);
+    }
+
+    return () => observer.disconnect();
+  }, []);
+
+  return (
+    <section id="about" className="bg-background py-12 md:py-24" ref={sectionRef}>
+      <div className="container px-4">
+        <div className="flex flex-col lg:flex-row lg:space-x-8">
+          <div className="lg:w-3/4">
+            {/* Magazine-style header */}
+            <motion.div
+              className="mb-12 md:mb-20"
+              variants={magazineVariants}
+              initial="hidden"
+              animate={isInView ? "visible" : "hidden"}
+            >
+              <h2 className="text-5xl md:text-7xl lg:text-8xl font-bold tracking-tight mb-4">
+                VR
+                <br />
+                <span className="text-primary">EXPERIENCE</span>
+              </h2>
+              <p className="text-xl md:text-2xl text-muted-foreground max-w-2xl">
+                Step into your future home before it's built. Revolutionary technology meets architectural excellence.
+              </p>
+            </motion.div>
+
+            {/* First magazine spread */}
+            <div className="mb-16 md:mb-24">
+              <div className="grid lg:grid-cols-2 gap-8 md:gap-12 items-center">
+                <motion.div
+                  variants={magazineVariants}
+                  initial="hidden"
+                  animate={isInView ? "visible" : "hidden"}
+                  transition={{ delay: 0.3 }}
+                >
+                  <h3 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-6 leading-tight">
+                    WALK THROUGH
+                    <br />
+                    <span className="text-primary">YOUR VISION</span>
+                  </h3>
+                  <p className="text-lg md:text-xl text-muted-foreground mb-6 leading-relaxed">
+                    Our clients don't just see blueprints; they explore their entire villa in a virtual environment. This allows for unparalleled flexibility to make changes to interiors, layouts, and even exterior elements in real-time.
+                  </p>
+                  <p className="text-lg md:text-xl text-muted-foreground leading-relaxed">
+                    Imagine adjusting kitchen cabinet finishes, change of flooring or bathroom tiles, sanitary, or experimenting with lighting, all before construction begins.
+                  </p>
+                </motion.div>
+                
                 <motion.div
                   variants={imageVariants}
                   initial="hidden"
-                  whileInView="visible"
-                  viewport={{ once: true, amount: 0.5 }}
-                  className="relative rounded-lg overflow-hidden shadow-xl max-w-xs mx-auto"
+                  animate={isInView ? "visible" : "hidden"}
+                  transition={{ delay: 0.5 }}
+                  className="relative rounded-lg overflow-hidden shadow-2xl image-container"
                 >
                   <img
                     src="/saridena_constructions/photos/vr/vr_walkthrough.png"
                     alt="VR Walkthrough"
-                    className="w-full h-auto object-cover"
+                    className="w-full h-auto object-cover high-quality-image"
+                    loading="eager"
                   />
                   <div className="absolute inset-0 bg-black bg-opacity-40 flex items-center justify-center opacity-0 hover:opacity-100 transition-opacity duration-300">
-                    <p className="text-white text-xl font-semibold text-center p-4">"Explore every corner, feel the space, make it truly yours."</p>
+                    <p className="text-white text-xl md:text-2xl font-bold text-center p-6">
+                      "Explore every corner, feel the space, make it truly yours."
+                    </p>
                   </div>
                 </motion.div>
-              </enter>
+              </div>
             </div>
 
-            <div className="mt-20 grid md:grid-cols-2 gap-12 items-center">
-              <motion.div
-                variants={imageVariants}
-                initial="hidden"
-                whileInView="visible"
-                viewport={{ once: true, amount: 0.5 }}
-                className="relative rounded-lg overflow-hidden shadow-xl md:order-2 max-w-xs mx-auto"
-              >
-                <img
-                  src="/saridena_constructions/photos/vr/vr_customization.png"
-                  alt="VR Customization"
-                  className="w-full h-auto object-cover"
-                />
-                <div className="absolute inset-0 bg-black bg-opacity-40 flex items-center justify-center opacity-0 hover:opacity-100 transition-opacity duration-300">
-                  <p className="text-white text-xl font-semibold text-center p-4">"Your vision, our expertise, perfected in virtual reality."</p>
-                </div>
-              </motion.div>
-              <motion.div
-                variants={containerVariants}
-                initial="hidden"
-                whileInView="visible"
-                viewport={{ once: true, amount: 0.5 }}
-                className="md:order-1"
-              >
-                <h3 className="text-3xl font-bold mb-4">Unmatched Flexibility & Precision</h3>
-                <p className="text-lg text-muted-foreground mb-6">
-                  Our VR experience isn't just for viewing; it's a powerful design tool. Clients can interact with the environment, change materials and furniture, with immediate visual feedback.
-                </p>
-                <p className="text-lg text-muted-foreground">
-                  This iterative design process minimizes costly revisions during construction and ensures every detail aligns with your desires. It's a seamless blend of technology and personalized design, delivering your dream home with confidence.
-                </p>
-              </motion.div>
+            {/* Second magazine spread - reversed layout */}
+            <div className="mb-16 md:mb-24">
+              <div className="grid lg:grid-cols-2 gap-8 md:gap-12 items-center">
+                <motion.div
+                  variants={imageVariants}
+                  initial="hidden"
+                  animate={isInView ? "visible" : "hidden"}
+                  transition={{ delay: 0.7 }}
+                  className="relative rounded-lg overflow-hidden shadow-2xl lg:order-2 image-container"
+                >
+                  <img
+                    src="/saridena_constructions/photos/vr/vr_customization.png"
+                    alt="VR Customization"
+                    className="w-full h-auto object-cover high-quality-image"
+                    loading="eager"
+                  />
+                  <div className="absolute inset-0 bg-black bg-opacity-40 flex items-center justify-center opacity-0 hover:opacity-100 transition-opacity duration-300">
+                    <p className="text-white text-xl md:text-2xl font-bold text-center p-6">
+                      "Your vision, our expertise, perfected in virtual reality."
+                    </p>
+                  </div>
+                </motion.div>
+                
+                <motion.div
+                  variants={magazineVariants}
+                  initial="hidden"
+                  animate={isInView ? "visible" : "hidden"}
+                  transition={{ delay: 0.9 }}
+                  className="lg:order-1"
+                >
+                  <h3 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-6 leading-tight">
+                    UNMATCHED
+                    <br />
+                    <span className="text-primary">PRECISION</span>
+                  </h3>
+                  <p className="text-lg md:text-xl text-muted-foreground mb-6 leading-relaxed">
+                    Our VR experience isn't just for viewing; it's a powerful design tool. Clients can interact with the environment, change materials and furniture, with immediate visual feedback.
+                  </p>
+                  <p className="text-lg md:text-xl text-muted-foreground leading-relaxed">
+                    This iterative design process minimizes costly revisions during construction and ensures every detail aligns with your desires.
+                  </p>
+                </motion.div>
+              </div>
             </div>
           </div>
-          <SideAd />
+          
+          <div className="lg:w-1/4 mt-8 lg:mt-0">
+            <SideAd />
+          </div>
         </div>
       </div>
     </section>

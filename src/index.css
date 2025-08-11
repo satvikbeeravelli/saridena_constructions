@@ -79,3 +79,78 @@
     scroll-behavior: smooth;
   }
 }
+
+@layer components {
+  /* Mobile-first responsive utilities */
+  .mobile-padding {
+    @apply px-4 sm:px-6 md:px-8;
+  }
+  
+  .mobile-text {
+    @apply text-sm sm:text-base md:text-lg;
+  }
+  
+  .mobile-title {
+    @apply text-xl sm:text-2xl md:text-3xl lg:text-4xl;
+  }
+  
+  .mobile-hero-title {
+    @apply text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl;
+  }
+}
+
+@layer utilities {
+  /* Touch-friendly sizing for mobile */
+  .touch-target {
+    @apply min-h-[44px] min-w-[44px];
+  }
+  
+  /* High-quality image rendering for all zoom levels */
+  .high-quality-image {
+    image-rendering: high-quality;
+    image-rendering: -webkit-optimize-contrast;
+    image-rendering: auto;
+    -ms-interpolation-mode: bicubic;
+    transform: translateZ(0);
+    backface-visibility: hidden;
+    perspective: 1000px;
+    will-change: transform;
+    transition: transform 0.3s ease-out;
+    filter: brightness(1.02) contrast(1.05) saturate(1.1);
+  }
+  
+  /* Specific logo quality enhancement */
+  .high-quality-image[alt*="Logo"] {
+    image-rendering: -webkit-optimize-contrast;
+    image-rendering: auto;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    filter: contrast(1.1) saturate(1.1);
+  }
+  
+  /* Container for high-quality images */
+  .image-container {
+    transform: translateZ(0);
+    will-change: transform;
+    overflow: hidden;
+    image-rendering: high-quality;
+    image-rendering: -webkit-optimize-contrast;
+  }
+  
+  /* Safe area padding for mobile devices */
+  .safe-top {
+    padding-top: env(safe-area-inset-top);
+  }
+  
+  .safe-bottom {
+    padding-bottom: env(safe-area-inset-bottom);
+  }
+  
+  .safe-left {
+    padding-left: env(safe-area-inset-left);
+  }
+  
+  .safe-right {
+    padding-right: env(safe-area-inset-right);
+  }
+}

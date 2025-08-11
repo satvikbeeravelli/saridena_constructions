@@ -1,5 +1,6 @@
 import { motion } from "framer-motion";
 import { ModeToggle } from "@/components/mode-toggle";
+import React from "react";
 
 export function Header() {
   const navLinks = [
@@ -15,6 +16,15 @@ export function Header() {
     visible: { opacity: 1, y: 0 },
   };
 
+  const handleScroll = (e: React.MouseEvent<HTMLAnchorElement, MouseEvent>, href: string) => {
+    e.preventDefault();
+    const targetId = href.replace(/.*#/, "");
+    const elem = document.getElementById(targetId);
+    elem?.scrollIntoView({
+      behavior: "smooth",
+    });
+  };
+
   return (
     <div className="fixed top-4 left-1/2 -translate-x-1/2 z-50">
       <div
@@ -25,11 +35,12 @@ export function Header() {
             <motion.a
               key={link.href}
               href={link.href}
+              onClick={(e) => handleScroll(e, link.href)}
               variants={navLinkVariants}
               initial="hidden"
               animate="visible"
               transition={{ delay: i * 0.1 }}
-              className="text-foreground font-medium transition-colors hover:text-accent"
+              className="text-foreground font-medium transition-colors hover:text-accent cursor-pointer"
             >
               {link.label}
             </motion.a>

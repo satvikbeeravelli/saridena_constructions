@@ -39,19 +39,19 @@ export function SectionTitle({ subtitle, title, description, className }: Sectio
       viewport={{ once: true, amount: 0.5 }}
     >
       <motion.h3 
-        className="text-xs md:text-sm lg:text-base font-semibold text-accent mb-2"
+        className="text-xs md:text-sm lg:text-base font-semibold text-accent mb-2 font-heading"
         variants={itemVariants}
       >
         {subtitle}
       </motion.h3>
       <motion.h2 
-        className="text-lg sm:text-xl md:text-2xl lg:text-3xl font-bold mb-3 md:mb-4"
+        className="text-base sm:text-lg md:text-xl lg:text-2xl font-bold mb-3 md:mb-4 font-heading"
         variants={itemVariants}
       >
         {title}
       </motion.h2>
       <motion.p 
-        className="max-w-3xl mx-auto text-xs md:text-sm text-muted-foreground"
+        className="max-w-3xl mx-auto text-xs md:text-sm text-muted-foreground font-content"
         variants={itemVariants}
       >
         {description}

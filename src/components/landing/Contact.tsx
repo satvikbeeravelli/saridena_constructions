@@ -56,12 +56,12 @@ export function Contact() {
           initial="hidden"
           animate={isInView ? "visible" : "hidden"}
         >
-          <h2 className="text-5xl md:text-7xl lg:text-8xl font-bold tracking-tight mb-6">
+          <h2 className="text-2xl md:text-4xl lg:text-5xl font-bold tracking-tight mb-6 font-heading">
             GET IN
             <br />
             <span className="text-primary">TOUCH</span>
           </h2>
-          <p className="text-xl md:text-2xl text-muted-foreground max-w-4xl mx-auto">
+          <p className="text-xl md:text-2xl text-muted-foreground max-w-4xl mx-auto font-content">
             Ready to transform your architectural dreams into reality? Let's start the conversation about your perfect villa.
           </p>
         </motion.div>
@@ -69,12 +69,12 @@ export function Contact() {
         {/* Magazine-style contact grid */}
         <div className="grid lg:grid-cols-2 gap-12 md:gap-16 items-start max-w-6xl mx-auto">
           <motion.div 
-            className="p-8 md:p-12 rounded-lg shadow-2xl border-2 border-border/20 bg-card/80 backdrop-blur-lg hover:shadow-3xl transition-all duration-500"
+            className="p-8 md:p-12 rounded-lg shadow-2xl border-2 border-border/20 bg-card/80 backdrop-blur-lg hover:shadow-3xl transition-all duration-500 hover:bg-card hover:border-border/40"
             variants={formVariants}
             initial="hidden"
             animate={isInView ? "visible" : "hidden"}
           >
-            <h3 className="text-2xl md:text-3xl lg:text-4xl font-bold mb-8">SEND US A MESSAGE</h3>
+            <h3 className="text-2xl md:text-3xl lg:text-4xl font-bold mb-8 font-heading">SEND US A MESSAGE</h3>
             <form className="space-y-4 md:space-y-6">
               <div>
                 <Label htmlFor="name">Name</Label>
@@ -99,20 +99,20 @@ export function Contact() {
           </motion.div>
 
           <motion.div 
-            className="p-8 md:p-12 rounded-lg shadow-2xl border-2 border-border/20 bg-card/80 backdrop-blur-lg hover:shadow-3xl transition-all duration-500"
+            className="p-8 md:p-12 rounded-lg shadow-2xl border-2 border-border/20 bg-card/80 backdrop-blur-lg hover:shadow-3xl transition-all duration-500 hover:bg-card hover:border-border/40"
             variants={infoVariants}
             initial="hidden"
             animate={isInView ? "visible" : "hidden"}
           >
-            <h3 className="text-2xl md:text-3xl lg:text-4xl font-bold mb-8">CONTACT INFO</h3>
+            <h3 className="text-xl md:text-2xl lg:text-3xl font-bold mb-8 font-heading">JOIN US</h3>
             <div className="space-y-8">
               <div className="flex items-center space-x-6">
                 <div className="bg-primary/10 p-4 rounded-full">
                   <Mail className="h-6 w-6 md:h-8 md:w-8 text-primary" />
                 </div>
                 <div>
-                  <p className="font-bold text-lg md:text-xl mb-1">Email Us</p>
-                  <a href="mailto:info@saridena.com" className="text-base md:text-lg text-muted-foreground hover:text-primary transition-colors">info@saridena.com</a>
+                  <p className="font-bold text-lg md:text-xl mb-1 font-content">Email Us</p>
+                  <a href="mailto:careers@saridenaconstructions.com" className="text-base md:text-lg text-muted-foreground hover:text-primary transition-colors font-content">careers@saridenaconstructions.com</a>
                 </div>
               </div>
               <div className="flex items-center space-x-6">
@@ -120,8 +120,8 @@ export function Contact() {
                   <Phone className="h-6 w-6 md:h-8 md:w-8 text-primary" />
                 </div>
                 <div>
-                  <p className="font-bold text-lg md:text-xl mb-1">Call Us</p>
-                  <a href="tel:+1234567890" className="text-base md:text-lg text-muted-foreground hover:text-primary transition-colors">+1 (234) 567-890</a>
+                  <p className="font-bold text-lg md:text-xl mb-1 font-content">Call Us</p>
+                  <a href="tel:+916387119708" className="text-base md:text-lg text-muted-foreground hover:text-primary transition-colors font-content">+91 63871 19708</a>
                 </div>
               </div>
               <div className="flex items-start space-x-6">
@@ -129,8 +129,8 @@ export function Contact() {
                   <MapPin className="h-6 w-6 md:h-8 md:w-8 text-primary" />
                 </div>
                 <div>
-                  <p className="font-bold text-lg md:text-xl mb-1">Visit Our Office</p>
-                  <address className="not-italic text-base md:text-lg text-muted-foreground">
+                  <p className="font-bold text-lg md:text-xl mb-1 font-content">Visit Our Office</p>
+                  <address className="not-italic text-base md:text-lg text-muted-foreground font-content">
                     4th Floor, <br />
                     Hyndava Techno Park <br />
                     Hyderabad, Telangana, India
@@ -158,9 +158,9 @@ export function Contact() {
             </div>
             
             <div className="mt-8 md:mt-12 pt-8 border-t border-border/20">
-              <h4 className="text-xl md:text-2xl font-bold mb-6">BUSINESS HOURS</h4>
-              <p className="text-lg md:text-xl text-muted-foreground mb-2">Monday - Saturday: 9:30 AM - 6:00 PM</p>
-              <p className="text-lg md:text-xl text-muted-foreground">Sunday: Closed</p>
+              <h4 className="text-lg md:text-xl font-bold mb-6 font-heading">BUSINESS HOURS</h4>
+              <p className="text-lg md:text-xl text-muted-foreground mb-2 font-content">Monday - Saturday: 9:30 AM - 6:00 PM</p>
+              <p className="text-lg md:text-xl text-muted-foreground font-content">Sunday: Closed</p>
             </div>
           </motion.div>
         </div>

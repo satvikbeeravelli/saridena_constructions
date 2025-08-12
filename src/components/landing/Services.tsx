@@ -82,12 +82,12 @@ export function Services() {
           initial="hidden"
           animate={isInView ? "visible" : "hidden"}
         >
-          <h2 className="text-5xl md:text-7xl lg:text-8xl font-bold tracking-tight mb-6">
+          <h2 className="text-4xl md:text-6xl lg:text-7xl font-bold tracking-tight mb-6 font-heading">
             OUR
             <br />
             <span className="text-primary">EXPERTISE</span>
           </h2>
-          <p className="text-xl md:text-2xl text-muted-foreground max-w-4xl mx-auto">
+          <p className="text-xl md:text-2xl text-muted-foreground max-w-4xl mx-auto font-content">
             Comprehensive construction services that bring your architectural dreams to reality with unmatched precision and quality.
           </p>
         </motion.div>
@@ -104,13 +104,13 @@ export function Services() {
               variants={cardMagazineVariants}
               transition={{ delay: index * 0.2 }}
             >
-              <Card className="h-full text-center pt-8 md:pt-12 hover:shadow-2xl hover:-translate-y-4 transition-all duration-500 border-2 hover:border-primary/20 bg-card/80 backdrop-blur-sm">
+              <Card className="h-full text-center pt-8 md:pt-12 hover:shadow-2xl hover:-translate-y-4 transition-all duration-500 border-2 hover:border-primary/20 bg-card/80 backdrop-blur-sm hover:bg-card">
                 <CardHeader className="items-center px-6 md:px-8 pb-8">
-                  <div className="bg-primary/10 p-4 md:p-6 rounded-full mb-6 ring-2 ring-primary/20">
+                  <div className="bg-primary/10 p-4 md:p-6 rounded-full mb-6 ring-2 ring-primary/20 hover:bg-primary/20 hover:ring-primary/40 transition-all duration-300">
                     {service.icon}
                   </div>
-                  <CardTitle className="text-xl md:text-2xl lg:text-3xl font-bold mb-4">{service.title}</CardTitle>
-                  <CardDescription className="text-base md:text-lg leading-relaxed">{service.description}</CardDescription>
+                  <CardTitle className="text-lg md:text-xl lg:text-2xl font-bold mb-4 font-heading">{service.title}</CardTitle>
+                  <CardDescription className="text-base md:text-lg leading-relaxed font-content">{service.description}</CardDescription>
                 </CardHeader>
               </Card>
             </motion.div>

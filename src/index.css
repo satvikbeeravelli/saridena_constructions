@@ -88,15 +88,50 @@
     font-family: 'Helvetica', 'Helvetica Neue', 'Inter', 'Segoe UI', Roboto, Arial, sans-serif !important;
   }
   
-  /* Ensure all headings use Helvetica */
+  /* Ensure all headings use Bileha by default, but allow override with font-content */
   h1, h2, h3, h4, h5, h6 {
-    font-family: 'Helvetica', 'Helvetica Neue', 'Inter', 'Segoe UI', Roboto, Arial, sans-serif !important;
+    font-family: 'Bileha', 'Helvetica', 'Helvetica Neue', 'Inter', 'Segoe UI', Roboto, Arial, sans-serif !important;
     font-weight: 700;
   }
   
-  /* Ensure all paragraphs and text elements use Helvetica */
-  p, span, div, a, button, input, textarea, select {
+  /* Ensure all other text elements use Helvetica by default */
+  p, span, div:not(h1):not(h2):not(h3):not(h4):not(h5):not(h6), a, button, input, textarea, select {
     font-family: 'Helvetica', 'Helvetica Neue', 'Inter', 'Segoe UI', Roboto, Arial, sans-serif !important;
+  }
+  
+  /* Font utility classes */
+  .font-heading {
+    font-family: 'Bileha', 'Helvetica', 'Helvetica Neue', 'Inter', 'Segoe UI', Roboto, Arial, sans-serif !important;
+  }
+  
+  .font-content {
+    font-family: 'Helvetica', 'Helvetica Neue', 'Inter', 'Segoe UI', Roboto, Arial, sans-serif !important;
+  }
+  
+  .font-bileha {
+    font-family: 'Bileha', 'Helvetica', 'Helvetica Neue', 'Inter', 'Segoe UI', Roboto, Arial, sans-serif !important;
+  }
+  
+  /* Override default font for specific elements that should use Helvetica */
+  p.font-content, 
+  span.font-content, 
+  div.font-content, 
+  a.font-content, 
+  button.font-content,
+  .font-content p,
+  .font-content span,
+  .font-content div {
+    font-family: 'Helvetica', 'Helvetica Neue', 'Inter', 'Segoe UI', Roboto, Arial, sans-serif !important;
+  }
+  
+  /* Ensure headings with font-heading class use Bileha */
+  h1.font-heading,
+  h2.font-heading,
+  h3.font-heading,
+  h4.font-heading,
+  h5.font-heading,
+  h6.font-heading {
+    font-family: 'Bileha', 'Helvetica', 'Helvetica Neue', 'Inter', 'Segoe UI', Roboto, Arial, sans-serif !important;
   }
   
   /* Responsive font scaling */

@@ -78,8 +78,8 @@ export function Team() {
                   alt={member.name} 
                   className="w-32 h-32 rounded-full mx-auto mb-4 object-cover object-top ring-4 ring-primary/10" 
                 />
-                <h3 className="text-xl font-bold">{member.name}</h3>
-                <p className="text-accent font-semibold mb-3">{member.role}</p>
+                <h3 className="text-xl font-bold font-heading">{member.name}</h3>
+                <p className="text-accent font-semibold mb-3 font-content">{member.role}</p>
                 <div className="flex justify-center space-x-4">
                   <a href={member.social.linkedin} className="text-muted-foreground hover:text-primary transition-colors">
                     <Linkedin className="h-5 w-5" />

@@ -55,9 +55,24 @@ export const Hero = () => {
       className="relative h-screen w-full overflow-hidden"
     >
       {/* Background overlay */}
-      <div className={`absolute inset-0 bg-black/60 z-10 transition-all duration-1000 ${
-        showMagazineLayout ? 'bg-black/40' : ''
+      <div className={`absolute inset-0 bg-black/50 z-10 transition-all duration-1000 ${
+        showMagazineLayout ? 'bg-black/30' : ''
       }`} />
+
+      {/* Text background overlay for magazine layout */}
+      <motion.div
+        className="absolute left-0 top-0 w-full md:w-1/2 h-full bg-white/85 backdrop-blur-sm z-15 hover:bg-white transition-all duration-300"
+        initial={{ opacity: 0, x: -100 }}
+        animate={{ 
+          opacity: showMagazineLayout ? 1 : 0,
+          x: showMagazineLayout ? 0 : -100
+        }}
+        transition={{ 
+          duration: 1.0, 
+          ease: "easeInOut",
+          delay: showMagazineLayout ? 0.3 : 0
+        }}
+      />
 
       {/* Video container with dynamic sizing */}
       <motion.div
@@ -88,10 +103,7 @@ export const Hero = () => {
             muted
             playsInline
             onEnded={handleVideoEnd}
-            className="w-full h-full object-cover rounded-lg"
-            style={{
-              borderRadius: showMagazineLayout ? "12px" : "0px"
-            }}
+            className="w-full h-full object-cover"
           />
         </div>
       </motion.div>
@@ -139,37 +151,13 @@ export const Hero = () => {
             transition={{ duration: 0.8 }}
             viewport={{ amount: 0.5 }}
           >
-            <h1 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl xl:text-4xl font-extrabold tracking-tight">
+            <h1 className="text-lg sm:text-xl md:text-2xl lg:text-3xl xl:text-3xl font-extrabold tracking-tight font-heading">
               Crafting Your Dream Villa
             </h1>
-            <p className="mt-4 max-w-2xl mx-auto text-xs sm:text-sm md:text-base text-white">
+            <p className="mt-4 max-w-2xl mx-auto text-xs sm:text-sm md:text-base text-white font-content">
               Experience unparalleled luxury and craftsmanship with Saridena
               Constructions. We bring your vision of a perfect home to life.
             </p>
-            <div className="mt-8 flex flex-col sm:flex-row justify-center gap-4">
-              <Button
-                asChild
-                size="lg"
-                className="bg-primary text-primary-foreground hover:bg-primary/90 w-full sm:w-auto"
-              >
-                <a href="#projects">
-                  Our Portfolio <ArrowRight className="ml-2 h-5 w-5" />
-                </a>
-              </Button>
-              <Button
-                asChild
-                size="lg"
-                variant="outline"
-                className="border-primary-foreground text-primary-foreground bg-transparent hover:bg-primary-foreground hover:text-background w-full sm:w-auto"
-                style={{
-                  boxShadow:
-                    "rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px",
-                  color: "white",
-                }}
-              >
-                <a href="#contact">Get a Quote</a>
-              </Button>
-            </div>
           </motion.div>
         </motion.div>
 
@@ -187,9 +175,9 @@ export const Hero = () => {
             delay: showMagazineLayout ? 0.5 : 0
           }}
         >
-          <div className="w-full md:w-1/2 px-6 md:px-12 text-foreground dark:text-white">
+          <div className="w-full md:w-1/2 px-6 md:px-12 text-black">
             <motion.h1 
-              className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-5xl font-bold leading-tight mb-4 md:mb-6 text-foreground dark:text-white"
+              className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-black leading-tight mb-4 md:mb-6 text-black font-heading"
               initial={{ opacity: 0, y: 30 }}
               animate={{ 
                 opacity: showMagazineLayout ? 1 : 0,
@@ -205,7 +193,7 @@ export const Hero = () => {
             </motion.h1>
             
             <motion.div
-              className="space-y-3 md:space-y-4 text-xs md:text-sm lg:text-base leading-relaxed mb-6 md:mb-8"
+              className="space-y-3 md:space-y-4 text-sm md:text-base lg:text-lg leading-relaxed mb-6 md:mb-8 font-content"
               initial={{ opacity: 0, y: 30 }}
               animate={{ 
                 opacity: showMagazineLayout ? 1 : 0,
@@ -213,12 +201,12 @@ export const Hero = () => {
               }}
               transition={{ delay: 1.0, duration: 0.8 }}
             >
-              <p className="text-gray-800 dark:text-gray-200">
+              <p className="text-black font-bold text-base md:text-lg lg:text-xl font-content">
                 Where architectural excellence meets uncompromising quality. 
                 Saridena Constructions transforms dreams into magnificent reality.
               </p>
               
-              <p className="text-gray-700 dark:text-gray-300 text-xs md:text-xs lg:text-sm">
+              <p className="text-black font-semibold text-sm md:text-base lg:text-lg font-content">
                 From concept to completion, we craft bespoke living spaces that 
                 reflect your unique vision and lifestyle.
               </p>
@@ -237,7 +225,7 @@ export const Hero = () => {
               <Button
                 asChild
                 size="lg"
-                className="bg-primary text-primary-foreground hover:bg-primary/90 font-semibold w-fit px-8"
+                className="bg-primary text-primary-foreground hover:bg-primary/90 font-bold w-fit px-8 text-base"
               >
                 <a href="#projects">
                   EXPLORE PORTFOLIO <ArrowRight className="ml-2 h-5 w-5" />
@@ -247,7 +235,11 @@ export const Hero = () => {
                 asChild
                 size="lg"
                 variant="outline"
-                className="border-foreground text-foreground bg-background/80 hover:bg-foreground hover:text-background font-semibold w-fit px-8 backdrop-blur-sm"
+                className="border-black text-black bg-white/90 hover:bg-white hover:text-white font-bold w-fit px-8 backdrop-blur-sm text-base hover:border-primary transition-all duration-300"
+                style={{
+                  borderWidth: "2px",
+                  boxShadow: "0 4px 8px rgba(0, 0, 0, 0.2)"
+                }}
               >
                 <a href="#contact">START YOUR PROJECT</a>
               </Button>

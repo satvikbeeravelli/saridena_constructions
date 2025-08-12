@@ -112,7 +112,7 @@ export function SideAd() {
       <motion.div 
         variants={cardVariants}
         transition={{ delay: 0.6 }}
-        className="bg-primary/5 border-2 border-primary/20 rounded-lg p-6 md:p-8 text-center hover:bg-primary/10 transition-all duration-300"
+        className="bg-primary/5 border-2 border-primary/20 rounded-lg p-6 md:p-8 text-center hover:bg-primary/15 transition-all duration-300 hover:border-primary/40 hover:shadow-lg"
       >
         <h4 className="text-xl md:text-2xl font-bold mb-4 text-foreground">
           START YOUR

@@ -26,7 +26,9 @@ export default {
         sans: ['Helvetica', 'Helvetica Neue', 'Inter', 'Segoe UI', 'Roboto', 'Arial', 'sans-serif'],
         serif: ['Helvetica', 'Helvetica Neue', 'Inter', 'Segoe UI', 'Roboto', 'Arial', 'sans-serif'],
         mono: ['Helvetica', 'Helvetica Neue', 'Inter', 'Segoe UI', 'Roboto', 'Arial', 'sans-serif'],
-        'helvetica': ['Helvetica', 'Helvetica Neue', 'Inter', 'Segoe UI', 'Roboto', 'Arial', 'sans-serif'],
+        'bileha': ['Bileha', 'Helvetica', 'Helvetica Neue', 'Inter', 'Segoe UI', 'Roboto', 'Arial', 'sans-serif'],
+        'heading': ['Bileha', 'Helvetica', 'Helvetica Neue', 'Inter', 'Segoe UI', 'Roboto', 'Arial', 'sans-serif'],
+        'content': ['Helvetica', 'Helvetica Neue', 'Inter', 'Segoe UI', 'Roboto', 'Arial', 'sans-serif'],
       },
       screens: {
         'xs': '475px',

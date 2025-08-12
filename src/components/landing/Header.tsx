@@ -9,7 +9,7 @@ export function Header() {
   const navLinks = [
     { href: '#home', label: 'Home' },
     { href: '#about', label: 'About' },
-   // { href: '#services', label: 'Services' },
+    { href: '#vr-experience', label: 'VR Experience' },
     { href: '#projects', label: 'Projects' },
     { href: '#contact', label: 'Contact' },
   ];
@@ -33,7 +33,7 @@ export function Header() {
     <div className="fixed top-4 left-1/2 -translate-x-1/2 z-50">
       {/* Desktop Navigation */}
       <div className="hidden md:block">
-        <div className="bg-white/10 backdrop-blur-lg rounded-full shadow-lg flex items-center justify-center overflow-hidden">
+        <div className="bg-white/10 backdrop-blur-lg rounded-full shadow-lg flex items-center justify-center overflow-hidden hover:bg-white/20 transition-all duration-300">
           <nav className="flex items-center space-x-4 px-6 py-4">
             {navLinks.map((link, i) => (
               <motion.a
@@ -56,7 +56,7 @@ export function Header() {
 
       {/* Mobile Navigation */}
       <div className="md:hidden px-4">
-        <div className="bg-white/10 backdrop-blur-lg rounded-full shadow-lg">
+        <div className="bg-white/10 backdrop-blur-lg rounded-full shadow-lg hover:bg-white/20 transition-all duration-300">
           <div className="flex items-center justify-between px-4 py-3">
             <div className="text-foreground font-semibold text-sm">Menu</div>
             <div className="flex items-center space-x-2">
@@ -77,7 +77,7 @@ export function Header() {
               initial={{ opacity: 0, y: -10 }}
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: -10 }}
-              className="absolute top-full left-0 right-0 mt-2 bg-white/90 dark:bg-gray-900/90 backdrop-blur-lg rounded-2xl shadow-lg border border-white/20"
+              className="absolute top-full left-0 right-0 mt-2 bg-white/90 dark:bg-gray-900/90 backdrop-blur-lg rounded-2xl shadow-lg border border-white/20 hover:bg-white dark:hover:bg-gray-900 hover:shadow-2xl transition-all duration-300"
             >
               <nav className="flex flex-col p-4 space-y-3">
                 {navLinks.map((link, i) => (

@@ -1,46 +1,26 @@
-/* Helvetica Font Face Declarations */
-
-/* Helvetica Regular */
+/* Bileha Font Face Declaration */
 @font-face {
-  font-family: 'Helvetica';
-  src: url('/saridena_constructions/fonts/Helvetica.ttf') format('truetype');
+  font-family: 'Bileha';
+  src: url('/saridena_constructions/fonts/Bileha.otf') format('opentype');
   font-weight: 400;
   font-style: normal;
   font-display: swap;
 }
 
-/* Helvetica Bold */
+/* Use the same file for bold (browser will create synthetic bold) */
 @font-face {
-  font-family: 'Helvetica';
-  src: url('/saridena_constructions/fonts/Helvetica-Bold.ttf') format('truetype');
+  font-family: 'Bileha';
+  src: url('/saridena_constructions/fonts/Bileha.otf') format('opentype');
   font-weight: 700;
   font-style: normal;
   font-display: swap;
 }
 
-/* Helvetica Light */
+/* Use the same file for light (browser will create synthetic light) */
 @font-face {
-  font-family: 'Helvetica';
-  src: url('/saridena_constructions/fonts/helvetica-light-587ebe5a59211.ttf') format('truetype');
+  font-family: 'Bileha';
+  src: url('/saridena_constructions/fonts/Bileha.otf') format('opentype');
   font-weight: 300;
   font-style: normal;
-  font-display: swap;
-}
-
-/* Helvetica Italic (Oblique) */
-@font-face {
-  font-family: 'Helvetica';
-  src: url('/saridena_constructions/fonts/Helvetica-Oblique.ttf') format('truetype');
-  font-weight: 400;
-  font-style: italic;
-  font-display: swap;
-}
-
-/* Helvetica Bold Italic (Bold Oblique) */
-@font-face {
-  font-family: 'Helvetica';
-  src: url('/saridena_constructions/fonts/Helvetica-BoldOblique.ttf') format('truetype');
-  font-weight: 700;
-  font-style: italic;
   font-display: swap;
 }

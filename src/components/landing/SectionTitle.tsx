@@ -32,26 +32,26 @@ const itemVariants = {
 export function SectionTitle({ subtitle, title, description, className }: SectionTitleProps) {
   return (
     <motion.div 
-      className={`text-center mb-12 ${className}`}
+      className={`text-center mb-8 md:mb-10 lg:mb-12 ${className}`}
       variants={containerVariants}
       initial="hidden"
       whileInView="visible"
       viewport={{ once: true, amount: 0.5 }}
     >
       <motion.h3 
-        className="text-lg font-semibold text-accent mb-2"
+        className="text-xs md:text-sm lg:text-base font-semibold text-accent mb-2"
         variants={itemVariants}
       >
         {subtitle}
       </motion.h3>
       <motion.h2 
-        className="text-3xl md:text-4xl font-bold mb-4"
+        className="text-lg sm:text-xl md:text-2xl lg:text-3xl font-bold mb-3 md:mb-4"
         variants={itemVariants}
       >
         {title}
       </motion.h2>
       <motion.p 
-        className="max-w-3xl mx-auto text-muted-foreground"
+        className="max-w-3xl mx-auto text-xs md:text-sm text-muted-foreground"
         variants={itemVariants}
       >
         {description}

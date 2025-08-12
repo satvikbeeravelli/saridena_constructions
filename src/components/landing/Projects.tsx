@@ -1,13 +1,14 @@
 import { Button } from "@/components/ui/button";
 import { motion, AnimatePresence } from "framer-motion";
 import { useState, useEffect, useRef } from "react";
+import { ImageLoader } from "@/components/ImageLoader";
 import {
   Carousel,
   CarouselContent,
   CarouselItem,
   CarouselNext,
   CarouselPrevious,
-  CarouselApi,
+  type CarouselApi,
 } from "@/components/ui/carousel";
 import {
   Select,
@@ -135,6 +136,21 @@ export function Projects() {
 
   const currentProjectData = allProjects[selectedProject];
 
+  // Preload first few images for better performance
+  useEffect(() => {
+    const currentCategoryImages = currentProjectData?.[selectedCategory];
+    
+    if (currentCategoryImages) {
+      // Preload first 3 images
+      currentCategoryImages.slice(0, 3).forEach((project) => {
+        if (project.image && !project.image.includes('iframe')) {
+          const img = new Image();
+          img.src = project.image;
+        }
+      });
+    }
+  }, [selectedProject, selectedCategory, currentProjectData]);
+
   useEffect(() => {
     if (carouselApi) {
       carouselApi.scrollTo(0);
@@ -151,15 +167,15 @@ export function Projects() {
   return (
     <motion.section
       id="projects"
-      className="py-12 md:py-24 bg-background"
+      className="py-8 md:py-16 lg:py-20 bg-background"
       variants={sectionVariants}
       initial="hidden"
       whileInView="visible"
       viewport={{ amount: 0.2 }}
     >
-      <div className="container px-4">
+      <div className="container px-4 sm:px-6 lg:px-8">
         {/* Magazine-style header layout */}
-        <div className="grid lg:grid-cols-2 gap-8 md:gap-12 items-center mb-12 md:mb-20">
+        <div className="grid lg:grid-cols-2 gap-6 md:gap-8 lg:gap-12 items-center mb-8 md:mb-12 lg:mb-16">
           {/* Left side - Heading */}
           <motion.div
             variants={magazineVariants}
@@ -167,12 +183,12 @@ export function Projects() {
             whileInView="visible"
             viewport={{ amount: 0.3 }}
           >
-            <h2 className="text-5xl md:text-7xl lg:text-8xl font-bold tracking-tight mb-6">
+            <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-5xl font-bold tracking-tight mb-4 md:mb-6">
               OUR
               <br />
               <span className="text-primary">PROJECTS</span>
             </h2>
-            <p className="text-xl md:text-2xl text-muted-foreground max-w-2xl">
+            <p className="text-xs sm:text-sm md:text-base lg:text-lg text-muted-foreground max-w-2xl">
               Experience our portfolio of luxury villas, each meticulously crafted with precision and artistic vision.
             </p>
           </motion.div>
@@ -184,7 +200,7 @@ export function Projects() {
             whileInView="visible"
             viewport={{ amount: 0.3 }}
             transition={{ delay: 0.2 }}
-            className="space-y-6"
+            className="space-y-4 md:space-y-6"
           >
             <Select onValueChange={(value) => setSelectedProject(value)} defaultValue={selectedProject}>
               <SelectTrigger className="w-full max-w-[320px] ml-auto">
@@ -203,7 +219,7 @@ export function Projects() {
             <div className="flex gap-4 justify-end">
               {/* Preview button */}
               <button 
-                className="bg-primary text-primary-foreground hover:bg-primary/90 px-6 py-3 rounded-lg font-semibold transition-all duration-300"
+                className="bg-primary text-primary-foreground hover:bg-primary/90 px-3 md:px-4 py-2 md:py-2 rounded-lg text-xs md:text-sm font-semibold transition-all duration-300"
                 onClick={() => setShowVideoPreview(!showVideoPreview)}
               >
                 Preview
@@ -219,7 +235,7 @@ export function Projects() {
                     navigationElement.scrollIntoView({ behavior: 'smooth', block: 'center' });
                   }
                 }}
-                className="border border-primary text-primary hover:bg-primary hover:text-primary-foreground px-6 py-3 rounded-lg font-semibold transition-all duration-300"
+                className="border border-primary text-primary hover:bg-primary hover:text-primary-foreground px-3 md:px-4 py-2 md:py-2 rounded-lg text-xs md:text-sm font-semibold transition-all duration-300"
               >
                 Details
               </button>
@@ -229,14 +245,14 @@ export function Projects() {
 
         <div className="max-w-6xl mx-auto">{/* Content wrapper */}
 
-        <div className="mb-8 md:mb-12">
+        <div className="mb-6 md:mb-8 lg:mb-12">
           <nav className="flex justify-center overflow-x-auto">
             <div className="border-b-2 flex min-w-max">
               {categoryOrder.map((category) => (
                 <Button
                   key={category}
                   variant="ghost"
-                  className={`py-3 md:py-4 px-3 md:px-6 text-sm md:text-lg font-medium rounded-none whitespace-nowrap ${
+                  className={`py-2 md:py-3 lg:py-3 px-2 md:px-4 lg:px-5 text-xs sm:text-sm md:text-sm lg:text-base font-medium rounded-none whitespace-nowrap ${
                     selectedCategory === category
                       ? "border-b-2 border-primary text-primary"
                       : "text-muted-foreground"
@@ -286,15 +302,14 @@ export function Projects() {
                     </a>
                   </div>
                 ) : (
-                  <motion.img
+                  <ImageLoader
                     src={project.image}
                     alt={project.name}
-                    className="w-full h-60 object-cover high-quality-image"
+                    className="w-full h-48 md:h-56 lg:h-60 high-quality-image"
                     whileHover={{ scale: 1.05 }}
                     transition={{ duration: 0.3 }}
                     onClick={() => setCurrentImageIndex(index)}
-                    loading="eager"
-                    decoding="async"
+                    loading={index < 3 ? "eager" : "lazy"}
                     style={{ imageRendering: 'auto' }}
                   />
                 )}
@@ -321,15 +336,14 @@ export function Projects() {
                       transition={{ duration: 0.5 }}
                       className="rounded-lg shadow-lg overflow-hidden image-container"
                     >
-                      <motion.img
+                      <ImageLoader
                         src={project.image}
                         alt={project.name}
-                        className="w-full h-60 object-cover high-quality-image"
+                        className="w-full h-48 md:h-56 lg:h-60 high-quality-image"
                         whileHover={{ scale: 1.05 }}
                         transition={{ duration: 0.3 }}
                         onClick={() => setCurrentImageIndex(index)}
-                        loading="eager"
-                        decoding="async"
+                        loading={index < 3 ? "eager" : "lazy"}
                         style={{ imageRendering: 'auto' }}
                       />
                     </motion.div>
@@ -342,15 +356,15 @@ export function Projects() {
           </Carousel>
         )}
 
-        <div className="mb-12 mt-12">
-          <h3 className="text-2xl font-bold tracking-tight sm:text-3xl text-center mb-8">
+        <div className="mb-8 md:mb-10 lg:mb-12 mt-8 md:mt-10 lg:mt-12">
+          <h3 className="text-base sm:text-lg md:text-xl lg:text-2xl font-bold tracking-tight text-center mb-6 md:mb-8">
             Project View
           </h3>
           <nav className="flex justify-center">
             <div className="border-b-2">
               <Button
                 variant="ghost"
-                className={`py-4 px-6 text-lg font-medium rounded-none ${
+                className={`py-2 md:py-2 lg:py-3 px-3 md:px-4 lg:px-5 text-xs md:text-sm lg:text-base font-medium rounded-none ${
                   selectedProjectTab === "Project specification"
                     ? "border-b-2 border-primary text-primary"
                     : "text-muted-foreground"
@@ -361,7 +375,7 @@ export function Projects() {
               </Button>
               <Button
                 variant="ghost"
-                className={`py-4 px-6 text-lg font-medium rounded-none ${
+                className={`py-2 md:py-2 lg:py-3 px-3 md:px-4 lg:px-5 text-xs md:text-sm lg:text-base font-medium rounded-none ${
                   selectedProjectTab === "Amenities"
                     ? "border-b-2 border-primary text-primary"
                     : "text-muted-foreground"

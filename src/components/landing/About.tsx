@@ -46,8 +46,8 @@ export function About() {
   }, []);
 
   return (
-    <section id="about" className="bg-background py-12 md:py-24" ref={sectionRef}>
-      <div className="container px-4">
+    <section id="about" className="bg-background py-8 md:py-16 lg:py-20" ref={sectionRef}>
+      <div className="container px-4 sm:px-6 lg:px-8">
         <div className="flex flex-col lg:flex-row lg:space-x-8">
           <div className="lg:w-3/4">
             {/* Magazine-style header */}

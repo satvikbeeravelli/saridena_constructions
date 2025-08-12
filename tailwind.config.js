@@ -22,6 +22,12 @@ export default {
       },
     },
     extend: {
+      fontFamily: {
+        sans: ['Helvetica', 'Helvetica Neue', 'Inter', 'Segoe UI', 'Roboto', 'Arial', 'sans-serif'],
+        serif: ['Helvetica', 'Helvetica Neue', 'Inter', 'Segoe UI', 'Roboto', 'Arial', 'sans-serif'],
+        mono: ['Helvetica', 'Helvetica Neue', 'Inter', 'Segoe UI', 'Roboto', 'Arial', 'sans-serif'],
+        'helvetica': ['Helvetica', 'Helvetica Neue', 'Inter', 'Segoe UI', 'Roboto', 'Arial', 'sans-serif'],
+      },
       screens: {
         'xs': '475px',
         '3xl': '1600px',

@@ -24,9 +24,9 @@ export const Hero = () => {
     if (!video) return;
 
     const handleTimeUpdate = () => {
-      const timeRemaining = video.duration - video.currentTime;
-      // Start transition 2 seconds before video ends
-      if (timeRemaining <= 2 && !videoCompleted) {
+      const currentTime = video.currentTime;
+      // Start transition after 3 seconds
+      if (currentTime >= 3 && !videoCompleted) {
         setVideoCompleted(true);
         // Start layout transition immediately
         setShowMagazineLayout(true);
@@ -139,10 +139,10 @@ export const Hero = () => {
             transition={{ duration: 0.8 }}
             viewport={{ amount: 0.5 }}
           >
-            <h1 className="text-3xl md:text-4xl lg:text-6xl font-extrabold tracking-tight">
+            <h1 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl xl:text-4xl font-extrabold tracking-tight">
               Crafting Your Dream Villa
             </h1>
-            <p className="mt-4 max-w-2xl mx-auto text-base md:text-lg text-white">
+            <p className="mt-4 max-w-2xl mx-auto text-xs sm:text-sm md:text-base text-white">
               Experience unparalleled luxury and craftsmanship with Saridena
               Constructions. We bring your vision of a perfect home to life.
             </p>
@@ -189,7 +189,7 @@ export const Hero = () => {
         >
           <div className="w-full md:w-1/2 px-6 md:px-12 text-foreground dark:text-white">
             <motion.h1 
-              className="text-4xl md:text-5xl lg:text-7xl font-bold leading-tight mb-6 text-foreground dark:text-white"
+              className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-5xl font-bold leading-tight mb-4 md:mb-6 text-foreground dark:text-white"
               initial={{ opacity: 0, y: 30 }}
               animate={{ 
                 opacity: showMagazineLayout ? 1 : 0,
@@ -205,7 +205,7 @@ export const Hero = () => {
             </motion.h1>
             
             <motion.div
-              className="space-y-4 text-lg leading-relaxed mb-8"
+              className="space-y-3 md:space-y-4 text-xs md:text-sm lg:text-base leading-relaxed mb-6 md:mb-8"
               initial={{ opacity: 0, y: 30 }}
               animate={{ 
                 opacity: showMagazineLayout ? 1 : 0,
@@ -218,7 +218,7 @@ export const Hero = () => {
                 Saridena Constructions transforms dreams into magnificent reality.
               </p>
               
-              <p className="text-gray-700 dark:text-gray-300 text-base">
+              <p className="text-gray-700 dark:text-gray-300 text-xs md:text-xs lg:text-sm">
                 From concept to completion, we craft bespoke living spaces that 
                 reflect your unique vision and lifestyle.
               </p>

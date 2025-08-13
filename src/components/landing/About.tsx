@@ -1,7 +1,6 @@
 import { motion } from "framer-motion";
 import { SectionTitle } from "./SectionTitle";
 import { useState, useRef, useEffect } from "react";
-import { ImageLoader } from "../ImageLoader";
 
 const containerVariants = {
   hidden: { opacity: 0 },
@@ -46,9 +45,9 @@ export function About() {
   }, []);
 
   return (
-    <section id="about" className="bg-background py-8 md:py-16 lg:py-20" ref={sectionRef}>
-      <div className="container px-4 sm:px-6 lg:px-8">
-        <div className="flex flex-col lg:flex-row lg:space-x-12">
+    <section id="about" className="bg-background py-6 sm:py-8 md:py-12 lg:py-16 xl:py-20" ref={sectionRef}>
+      <div className="container-responsive">
+        <div className="flex flex-col lg:flex-row lg:space-x-8 xl:space-x-12 2xl:space-x-16">
           <div className="lg:w-3/4">
           
           {/* Meet Our Founder Section */}
@@ -58,37 +57,39 @@ export function About() {
               initial="hidden"
               animate={isInView ? "visible" : "hidden"}
             >
-              <h2 className="text-3xl md:text-5xl lg:text-6xl font-black tracking-tight mb-8 font-heading">
+              <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-black tracking-tight mb-6 sm:mb-8 md:mb-10 lg:mb-12 font-heading">
                 MEET OUR
                 <br />
                 <span className="text-primary">FOUNDER</span>
               </h2>
               
-              <div className="bg-white/90 backdrop-blur-sm p-8 md:p-12 rounded-lg shadow-lg mb-8 hover:bg-white hover:shadow-2xl transition-all duration-300">
-                <div className="grid lg:grid-cols-3 gap-8 items-center">
-                  {/* Founder Image */}
+              <div className="bg-white/90 backdrop-blur-sm p-4 sm:p-6 md:p-8 lg:p-10 xl:p-12 rounded-lg shadow-lg mb-6 sm:mb-8 md:mb-10 hover:bg-white hover:shadow-2xl transition-all duration-300">
+                <div className="grid lg:grid-cols-3 gap-4 sm:gap-6 md:gap-8 lg:gap-10 items-center">
+                  {/* Founder Interactive Card */}
                   <div className="lg:col-span-1">
                     <motion.div
                       variants={textVariants}
                       initial="hidden"
                       animate={isInView ? "visible" : "hidden"}
                       transition={{ delay: 0.2 }}
-                      className="relative"
+                      className="relative h-80 lg:h-96 perspective-1000"
                     >
-                      <ImageLoader
-                        src="/saridena_constructions/photos/exterior/1.jpg"
-                        alt="Mr. Suman Rao Saridena - Founder"
-                        className="w-full h-80 lg:h-96 object-cover rounded-lg shadow-lg"
-                        whileHover={{ scale: 1.02 }}
-                        transition={{ duration: 0.3 }}
+                      <img
+                        src={`${import.meta.env.BASE_URL}photos/interior/1.png`}
+                        alt="Founder"
+                        className="w-32 h-32 sm:w-40 sm:h-40 md:w-48 md:h-48 lg:w-56 lg:h-56 xl:w-64 xl:h-64 rounded-full object-cover mx-auto shadow-lg"
+                        onError={(e) => {
+                          console.log('Image failed to load:', e.currentTarget.src);
+                          // Try fallback image
+                          e.currentTarget.src = `${import.meta.env.BASE_URL}photos/saridena_logo.png`;
+                        }}
                       />
-                      <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent rounded-lg"></div>
                     </motion.div>
                   </div>
                   
                   {/* Founder Information */}
                   <div className="lg:col-span-2">
-                    <h3 className="text-xl md:text-2xl font-bold text-black mb-6 font-heading">
+                    <h3 className="text-lg sm:text-xl md:text-2xl lg:text-3xl xl:text-4xl font-bold text-black mb-4 sm:mb-6 md:mb-8 font-heading">
                       Mr. Suman Rao Saridena
                     </h3>
                     <motion.div
@@ -97,13 +98,13 @@ export function About() {
                       animate={isInView ? "visible" : "hidden"}
                       transition={{ delay: 0.3 }}
                     >
-                      <p className="text-base md:text-lg text-black leading-relaxed mb-6 font-content">
+                      <p className="text-sm sm:text-base md:text-lg lg:text-xl text-black leading-relaxed mb-4 sm:mb-6 md:mb-8 font-content">
                         An entrepreneur with a global perspective and local roots, Mr. Suman Rao brings precision, innovation, and restraint to the way India builds. With over 16 years of experience in the U.S. leading technology programs for Fortune 100 companies, his shift to real estate was not to follow trends, but to redefine them.
                       </p>
-                      <p className="text-base md:text-lg text-black leading-relaxed mb-6">
+                      <p className="text-sm sm:text-base md:text-lg lg:text-xl text-black leading-relaxed mb-4 sm:mb-6 md:mb-8">
                         His academic foundation, B.E. in Mechanical Engineering (Osmania University) and M.S. in Computer Science (USA), equips him to see design as a science, and construction as art.
                       </p>
-                      <p className="text-base md:text-lg text-black font-semibold leading-relaxed">
+                      <p className="text-sm sm:text-base md:text-lg lg:text-xl text-black font-semibold leading-relaxed">
                         His vision is not just to build properties, but to create an ecosystem of thoughtful living for those who expect more from life, and even more from space.
                       </p>
                     </motion.div>

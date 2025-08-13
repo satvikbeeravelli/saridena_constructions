@@ -108,29 +108,31 @@ export const Hero = () => {
         </div>
       </motion.div>
 
-      {/* Fixed logo */}
-      <motion.img
-        layoutId="main-logo"
-        src="/saridena_constructions/photos/saridena_logo.png"
-        alt="Saridena Logo"
-        style={{
-          filter: "drop-shadow(2px 2px 2px rgba(0, 0, 0, 0.6))",
-          height: "3rem",
-          imageRendering: "crisp-edges",
-          backfaceVisibility: "hidden",
-          transform: "translateZ(0)",
-          willChange: "transform"
-        }}
-        className="fixed top-4 left-4 md:left-8 h-8 md:h-10 z-50 high-quality-image"
-        loading="eager"
-        animate={{
-          scale: [1, 1.02, 1],
-        }}
-        transition={{
-          duration: 0.1,
-          ease: "linear"
-        }}
-      />
+      {/* Logo with background container - properly wrapped */}
+      <div className="fixed top-2 left-2 md:top-4 md:left-4 z-50 bg-white/15 backdrop-blur-md rounded-xl p-2 md:p-3 shadow-lg hover:bg-white/25 transition-all duration-300 border border-white/10">
+        <motion.img
+          layoutId="main-logo"
+          src="/saridena_constructions/photos/saridena_logo.png"
+          alt="Saridena Logo"
+          style={{
+            filter: "drop-shadow(1px 1px 3px rgba(0, 0, 0, 0.4))",
+            height: "2.5rem",
+            imageRendering: "crisp-edges",
+            backfaceVisibility: "hidden",
+            transform: "translateZ(0)",
+            willChange: "transform"
+          }}
+          className="h-6 md:h-8 high-quality-image"
+          loading="eager"
+          animate={{
+            scale: [1, 1.02, 1],
+          }}
+          transition={{
+            duration: 0.1,
+            ease: "linear"
+          }}
+        />
+      </div>
 
       {/* Main content area */}
       <div className="absolute inset-0 z-20">
@@ -175,9 +177,9 @@ export const Hero = () => {
             delay: showMagazineLayout ? 0.5 : 0
           }}
         >
-          <div className="w-full md:w-1/2 px-6 md:px-12 text-black">
+          <div className="w-full lg:w-1/2 px-4 sm:px-6 md:px-8 lg:px-12 xl:px-16 text-black pt-8 sm:pt-12 md:pt-16 lg:pt-20 xl:pt-24">
             <motion.h1 
-              className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-black leading-tight mb-4 md:mb-6 text-black font-heading"
+              className="text-xl sm:text-2xl md:text-3xl lg:text-4xl xl:text-5xl 2xl:text-6xl font-normal leading-tight mb-3 sm:mb-4 md:mb-6 lg:mb-8 text-black font-heading"
               initial={{ opacity: 0, y: 30 }}
               animate={{ 
                 opacity: showMagazineLayout ? 1 : 0,
@@ -193,7 +195,7 @@ export const Hero = () => {
             </motion.h1>
             
             <motion.div
-              className="space-y-3 md:space-y-4 text-sm md:text-base lg:text-lg leading-relaxed mb-6 md:mb-8 font-content"
+              className="space-y-2 sm:space-y-3 md:space-y-4 text-xs sm:text-sm md:text-base lg:text-lg xl:text-xl leading-relaxed mb-4 sm:mb-6 md:mb-8 lg:mb-10 font-content"
               initial={{ opacity: 0, y: 30 }}
               animate={{ 
                 opacity: showMagazineLayout ? 1 : 0,
@@ -201,12 +203,12 @@ export const Hero = () => {
               }}
               transition={{ delay: 1.0, duration: 0.8 }}
             >
-              <p className="text-black font-bold text-base md:text-lg lg:text-xl font-content">
+              <p className="text-black text-sm sm:text-base md:text-lg lg:text-xl xl:text-2xl font-content">
                 Where architectural excellence meets uncompromising quality. 
                 Saridena Constructions transforms dreams into magnificent reality.
               </p>
               
-              <p className="text-black font-semibold text-sm md:text-base lg:text-lg font-content">
+              <p className="text-black text-xs sm:text-sm md:text-base lg:text-lg xl:text-xl font-content">
                 From concept to completion, we craft bespoke living spaces that 
                 reflect your unique vision and lifestyle.
               </p>
@@ -214,7 +216,7 @@ export const Hero = () => {
 
             {/* Buttons positioned vertically on extreme left */}
             <motion.div
-              className="flex flex-col gap-4 w-fit"
+              className="flex flex-col sm:flex-row lg:flex-col gap-3 sm:gap-4 md:gap-6 w-full sm:w-auto"
               initial={{ opacity: 0, y: 30 }}
               animate={{ 
                 opacity: showMagazineLayout ? 1 : 0,
@@ -225,23 +227,19 @@ export const Hero = () => {
               <Button
                 asChild
                 size="lg"
-                className="bg-primary text-primary-foreground hover:bg-primary/90 font-bold w-fit px-8 text-base"
+                className="bg-primary text-primary-foreground hover:bg-primary/90 w-full sm:w-fit px-4 sm:px-6 md:px-8 text-sm sm:text-base md:text-lg"
               >
                 <a href="#projects">
-                  EXPLORE PORTFOLIO <ArrowRight className="ml-2 h-5 w-5" />
+                  Explore Portfolio <ArrowRight className="ml-2 h-4 w-4 sm:h-5 sm:w-5" />
                 </a>
               </Button>
               <Button
                 asChild
                 size="lg"
                 variant="outline"
-                className="border-black text-black bg-white/90 hover:bg-white hover:text-white font-bold w-fit px-8 backdrop-blur-sm text-base hover:border-primary transition-all duration-300"
-                style={{
-                  borderWidth: "2px",
-                  boxShadow: "0 4px 8px rgba(0, 0, 0, 0.2)"
-                }}
+                className="border-black text-black bg-white/90 hover:bg-white hover:text-white  w-full sm:w-fit px-4 sm:px-6 md:px-8 backdrop-blur-sm text-sm sm:text-base md:text-lg hover:border-primary transition-all duration-300"
               >
-                <a href="#contact">START YOUR PROJECT</a>
+                <a href="#contact">Start Your Project</a>
               </Button>
             </motion.div>
           </div>

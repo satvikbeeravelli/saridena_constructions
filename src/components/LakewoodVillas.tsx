@@ -3,6 +3,7 @@ import { useState, useEffect } from "react";
 import { ArrowLeft, Home, MapPin, Bed, Square, Calendar, X, ChevronLeft, ChevronRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { ImageLoader } from "@/components/ImageLoader";
+import { ModeToggle } from "@/components/mode-toggle";
 
 type Category = "Interior" | "Exterior" | "Floor Plan" | "Location and layout" | "Isometric View";
 
@@ -206,8 +207,10 @@ export function LakewoodVillas() {
               />
             </div>
             
-            {/* Empty space for balance */}
-            <div className="w-32"></div>
+            {/* Theme Toggle */}
+            <div className="flex items-center">
+              <ModeToggle />
+            </div>
           </div>
         </div>
       </motion.div>

@@ -131,7 +131,7 @@ export function Contact() {
                 <div>
                   <p className="font-bold text-lg md:text-xl mb-1 font-content">Visit Our Office</p>
                   <address className="not-italic text-base md:text-lg text-muted-foreground font-content">
-                    4th Floor, <br />
+                    4-B, 4th Floor, <br />
                     Hyndava Techno Park <br />
                     Hyderabad, Telangana, India
                   </address>

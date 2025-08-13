@@ -110,28 +110,39 @@ export const Hero = () => {
 
       {/* Logo with background container - properly wrapped */}
       <div className="fixed top-2 left-2 md:top-4 md:left-4 z-50 bg-white/15 backdrop-blur-md rounded-xl p-2 md:p-3 shadow-lg hover:bg-white/25 transition-all duration-300 border border-white/10">
-        <motion.img
-          layoutId="main-logo"
-          src="/saridena_constructions/photos/saridena_logo.png"
-          alt="Saridena Logo"
-          style={{
-            filter: "drop-shadow(1px 1px 3px rgba(0, 0, 0, 0.4))",
-            height: "2.5rem",
-            imageRendering: "crisp-edges",
-            backfaceVisibility: "hidden",
-            transform: "translateZ(0)",
-            willChange: "transform"
+        <a 
+          href="#home" 
+          className="block cursor-pointer"
+          onClick={(e) => {
+            e.preventDefault();
+            window.location.hash = '#home';
+            // Scroll to top smoothly
+            window.scrollTo({ top: 0, behavior: 'smooth' });
           }}
-          className="h-6 md:h-8 high-quality-image"
-          loading="eager"
-          animate={{
-            scale: [1, 1.02, 1],
-          }}
-          transition={{
+        >
+          <motion.img
+            layoutId="main-logo"
+            src="/saridena_constructions/photos/saridena_logo.png"
+            alt="Saridena Logo"
+            style={{
+              filter: "drop-shadow(1px 1px 3px rgba(0, 0, 0, 0.4))",
+              height: "2.5rem",
+              imageRendering: "crisp-edges",
+              backfaceVisibility: "hidden",
+              transform: "translateZ(0)",
+              willChange: "transform"
+            }}
+            className="h-6 md:h-8 high-quality-image hover:scale-105 transition-transform duration-200"
+            loading="eager"
+            animate={{
+              scale: [1, 1.02, 1],
+            }}
+            transition={{
             duration: 0.1,
             ease: "linear"
           }}
         />
+        </a>
       </div>
 
       {/* Main content area */}
